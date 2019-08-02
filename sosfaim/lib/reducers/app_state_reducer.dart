@@ -20,11 +20,11 @@ AppState _incrementDay(AppState state, IncrementDay action){
 }
 
 AppState _updateMilkPrice(AppState state, UpdateMilkPrice action) {
-  return state.copyWith(milkPrice : state.milkPrice);
+  return state.copyWith(milkPrice : action.price);
 }
 
 AppState _updateSelectedCowNumber(AppState state, UpdateSelectedCowNumber action) {
-  return state.copyWith(selectedCowNumber : state.selectedCowNumber);
+  return state.copyWith(selectedCowNumber : action.selectedCowNumber);
 }
 
 AppState _addCapital(AppState state, AddCapital action){
