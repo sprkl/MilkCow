@@ -10,7 +10,7 @@ class SampleApp extends StatelessWidget {
     return new MaterialApp(
       title: 'Sample App',
       theme: new ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.teal,
       ),
       home: new SampleAppPage(),
     );
@@ -28,7 +28,6 @@ class _SampleAppPageState extends State<SampleAppPage> {
   List widgets = [];
   int dayCount = 1;
 
-
   @override
   void initState() {
     super.initState();
@@ -40,23 +39,24 @@ class _SampleAppPageState extends State<SampleAppPage> {
       appBar: new AppBar(
         title: new Text("Jour $dayCount"),
       ),
-      body: new ListView.builder(
-          itemCount: widgets.length,
+      body: 
+        new ListView.builder(
+          itemCount: 2,
           itemBuilder: (BuildContext context, int position) {
-            return getRow(position);
-          }));
-  }
-
-  Widget getRow(int i) {
-    return new Padding(
-      padding: new EdgeInsets.all(10.0),
-      child: new Text("Row ${widgets[i]["title"]}")
+            return Container(
+              height: 30,
+              child:  Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Container(
+                  child: LinearProgressIndicator(
+                    value: 0.5,
+                    backgroundColor: Colors.grey,
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.teal),
+                  ),
+                ),
+              ),
+            );
+          })
     );
   }
-
-  //  loadData() {
-  //   setState(() {
-  //     widgets = json.decode(response.body);
-  //   });
-  // }
 }
