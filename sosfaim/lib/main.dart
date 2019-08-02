@@ -36,73 +36,33 @@ class SampleAppPage extends StatefulWidget {
 class _SampleAppPageState extends State<SampleAppPage> {
   List widgets = [];
   int dayCount = 1;
-  double _progressValue = 0.0;
 
- @override
- void initState() {
-   super.initState();
- }
- 
- @override
- Widget build(BuildContext context) {
+  int totalCowNumber = 0;
+
+  bool canShowCowButton = false;
+  double selectedCowNumber = 0;
+  var cowButtonText = '';
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: new AppBar(
-        title: new Text("Jour $dayCount"),
-      ),
-      body: new Column(
-  mainAxisAlignment: MainAxisAlignment.start,
-  children: [
-     AppHeader(),
-     new SingleChildScrollView(
-        child: new Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            new Column(
+        appBar: new AppBar(
+          title: new Text("Jour $dayCount"),
+        ),
+        body: new Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+          AppHeader(),
+          new SingleChildScrollView(
+            child: new Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget> [
-                new Container(
-                  // A fixed-height child.
-                  height: 40.0,
-                  padding: const EdgeInsets.all(10.0),
-                  child: new LinearProgressIndicator(
-                    value: _progressValue,
-                    backgroundColor: Colors.grey,
-                    valueColor: AlwaysStoppedAnimation<Color>(Colors.teal),
-                  )
-                ),
-                new Slider(
-                  value: _progressValue,
-                  onChanged: (value) {
-                    setState(() => _progressValue = value);
-                  }
-                ),
-                // new RaisedButton(
-                //   elevation: 2,
-                //   child: Text(''),
-                //   onPressed: () {
-                //     //Insert event to be fired up when button is clicked here
-                //     //in this case, this increments our countValue variable by one.
-                //     setState(() => _progressValue += 0.1);
-                //   }
-                // )
-              ]
+              children: <Widget>[],
             ),
-            new Container(
-              // A fixed-height child.
-              height: 40.0,
-              padding: const EdgeInsets.all(10.0),
-              child: new LinearProgressIndicator(
-                value: _progressValue,
-                backgroundColor: Colors.grey,
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.teal),
-              )
-            ),
-          ],
-        ),
-      )
-   ])
-  ); 
- }
+          )
+        ]));
+  }
 }
