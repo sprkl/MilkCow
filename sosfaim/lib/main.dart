@@ -58,7 +58,7 @@ class _SampleAppPageState extends State<SampleAppPage> {
                   height: 40.0,
                   padding: const EdgeInsets.all(10.0),
                   child: new LinearProgressIndicator(
-                    value: totalCowNumber.toDouble(),
+                    value: totalCowNumber / 100.0,
                     backgroundColor: Colors.grey,
                     valueColor: AlwaysStoppedAnimation<Color>(Colors.teal),
                   )
@@ -96,7 +96,7 @@ class _SampleAppPageState extends State<SampleAppPage> {
               height: 40.0,
               padding: const EdgeInsets.all(10.0),
               child: new LinearProgressIndicator(
-                value: totalCowNumber.toDouble(),
+                value: totalCowNumber / 100.0,
                 backgroundColor: Colors.grey,
                 valueColor: AlwaysStoppedAnimation<Color>(Colors.teal),
               )
