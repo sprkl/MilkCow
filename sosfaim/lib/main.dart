@@ -4,6 +4,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 
 import 'components/AppHeader/app_header.dart';
 import 'models/app_state.dart';
+import 'reducers/cow_module_reducer.dart';
 import 'reducers/app_state_reducer.dart';
 
 void main() {
@@ -11,7 +12,9 @@ void main() {
 }
 
 class SampleApp extends StatelessWidget {
-  final store = Store<AppState>(appReducer, initialState: new AppState());
+  final store = Store<AppState>(
+      combineReducers<AppState>([appReducer, cowModuleReducer]),
+      initialState: new AppState());
 
   @override
   Widget build(BuildContext context) {

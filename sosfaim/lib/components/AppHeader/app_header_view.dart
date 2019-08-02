@@ -26,7 +26,7 @@ class AppHeaderView extends StatelessWidget {
       child:
           new Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
         new Column(children: <Widget>[
-          new Icon(Icons.attach_money),
+          new IconButton(icon : new Icon(Icons.music_note), onPressed: this.onClick),
           new Text(this.capital.toString())
         ]),
         new Column(children: <Widget>[
