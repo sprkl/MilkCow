@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:redux/redux.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
+import 'components/AppHeader/app_header.dart';
 import 'models/app_state.dart';
 import 'reducers/app_state_reducer.dart';
 
@@ -37,49 +38,71 @@ class _SampleAppPageState extends State<SampleAppPage> {
   int dayCount = 1;
   double _progressValue = 0.0;
 
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
+ @override
+ void initState() {
+   super.initState();
+ }
+ 
+ @override
+ Widget build(BuildContext context) {
     return new Scaffold(
-        appBar: new AppBar(
-          title: new Text("Jour $dayCount"),
-        ),
-        body: new ListView.builder(
-            itemCount: 2,
-            itemBuilder: (BuildContext context, int position) {
-              return new Column(children: [
+      appBar: new AppBar(
+        title: new Text("Jour $dayCount"),
+      ),
+      body: new Column(
+  mainAxisAlignment: MainAxisAlignment.start,
+  children: [
+     AppHeader(),
+     new SingleChildScrollView(
+        child: new Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            new Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget> [
                 new Container(
-                  height: 30,
-                  child: new Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: new Container(
-                      child: new LinearProgressIndicator(
-                        value: _progressValue,
-                        backgroundColor: Colors.grey,
-                        valueColor: AlwaysStoppedAnimation<Color>(Colors.teal),
-                      ),
-                    ),
-                  ),
+                  // A fixed-height child.
+                  height: 40.0,
+                  padding: const EdgeInsets.all(10.0),
+                  child: new LinearProgressIndicator(
+                    value: _progressValue,
+                    backgroundColor: Colors.grey,
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.teal),
+                  )
                 ),
-                new Container(
-                  height: 60,
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: new RaisedButton(
-                      child: Text('Click Button'),
-                      onPressed: () {
-                        //Insert event to be fired up when button is clicked here
-                        //in this case, this increments our countValue variable by one.
-                        setState(() => _progressValue += 0.1);
-                      },
-                    ),
-                  ),
-                )
-              ]);
-            }));
-  }
+                new Slider(
+                  value: _progressValue,
+                  onChanged: (value) {
+                    setState(() => _progressValue = value);
+                  }
+                ),
+                // new RaisedButton(
+                //   elevation: 2,
+                //   child: Text(''),
+                //   onPressed: () {
+                //     //Insert event to be fired up when button is clicked here
+                //     //in this case, this increments our countValue variable by one.
+                //     setState(() => _progressValue += 0.1);
+                //   }
+                // )
+              ]
+            ),
+            new Container(
+              // A fixed-height child.
+              height: 40.0,
+              padding: const EdgeInsets.all(10.0),
+              child: new LinearProgressIndicator(
+                value: _progressValue,
+                backgroundColor: Colors.grey,
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.teal),
+              )
+            ),
+          ],
+        ),
+      )
+   ])
+  ); 
+ }
 }

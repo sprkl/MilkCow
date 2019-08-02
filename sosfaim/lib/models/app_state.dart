@@ -12,7 +12,7 @@ class AppState {
       {this.isLoading = false,
       this.modules = const [],
       this.dayCount = 1,
-      this.capital = 0,
+      this.capital = 1000,
       this.milkPrice = 1,
       this.milkProduction = 0});
 
