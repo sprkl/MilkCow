@@ -1,26 +1,28 @@
+// Copyright 2018 The Flutter Architecture Sample Authors. All rights reserved.
+// Use of this source code is governed by the MIT license that can be found
+// in the LICENSE file.
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:sosfaim/actions/actions.dart';
 
-import 'module.dart';
-
-class CowManager extends StatelessWidget implements IModule {
+class CowManagerView extends StatelessWidget {
   
- final int totalCowNumber = 0;
+  final int totalCowNumber;
+  final double selectedCowNumber;
+  final Function onCowNumberValuedChanged;
 
- final bool canShowCowButton = false;
- final double selectedCowNumber = 0;
- final String cowButtonText = '';
-
-  @override
-  void execute() {
-    // TODO: implement execute
-  }
+  CowManagerView(
+      {@required this.totalCowNumber,
+      @required this.selectedCowNumber, 
+      @required this.onCowNumberValuedChanged});
 
   @override
   Widget build(BuildContext context) {
 
     final canShowCowButton = selectedCowNumber != 0; 
-
+    final selectedCowNumberInt = selectedCowNumber.toInt();
+    final cowButtonText = selectedCowNumber < 0 ? 'Vendre $selectedCowNumberInt vache(s)': 'Acheter $selectedCowNumberInt vache(s)';
+    
     return new Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -63,15 +65,5 @@ class CowManager extends StatelessWidget implements IModule {
         )
       ]
     );
-  }
-
-  onCowNumberValuedChanged(value) {
-    dispatch();
-    // setState(() {
-    //   selectedCowNumber = value;
-
-    //   var selectedCowNumberInt = selectedCowNumber.toInt();
-    //   cowButtonText = selectedCowNumber < 0 ? 'Vendre $selectedCowNumberInt vache(s)': 'Acheter $selectedCowNumberInt vache(s)';
-    // });
   }
 }

@@ -3,6 +3,7 @@ import 'package:redux/redux.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
 import 'components/AppHeader/app_header.dart';
+import 'components/CowManager/cow_manager.dart';
 import 'models/app_state.dart';
 import 'reducers/app_state_reducer.dart';
 
@@ -54,12 +55,14 @@ class _SampleAppPageState extends State<SampleAppPage> {
         title: new Text("Jour $dayCount"),
       ),
       body: new Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-        AppHeader(),
+        new AppHeader(),
         new SingleChildScrollView(
           child: new Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[],
+            children: <Widget>[
+              new CowManager()
+            ],
           ),
         )
       ])

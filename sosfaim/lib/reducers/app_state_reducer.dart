@@ -20,7 +20,8 @@ AppState appReducer(AppState state, action) {
     dayCount: TypedReducer<int, IncrementDay>(_incrementDay)(state.dayCount, action),
     capital : TypedReducer<int, AddCapital>(_addCapital)(state.capital, action),
     milkPrice: TypedReducer<double, UpdateMilkPrice>(_updateMilkPrice)(state.milkPrice, action),
-    milkProduction: state.milkProduction
+    milkProduction: state.milkProduction,
+    selectedCowNumber: TypedReducer<double, UpdateSelectedCowNumber>(_updateSelectedCowNumber)(state.selectedCowNumber, action)
   );
 }
 
@@ -34,4 +35,8 @@ double _updateMilkPrice(double milePrice, UpdateMilkPrice action) {
 
 int _addCapital(int capital, AddCapital action){
   return capital + action.amount;
+}
+
+double _updateSelectedCowNumber(double selectedCowNumber, UpdateSelectedCowNumber action) {
+    return action.selectedCowNumber;
 }

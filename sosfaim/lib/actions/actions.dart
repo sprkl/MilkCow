@@ -22,7 +22,6 @@ class IncrementDay{}
 
 class UpdateSelectedCowNumber {
   final double selectedCowNumber;
-  final String cowButtonText;
   
-  UpdateSelectedCowNumber(this.selectedCowNumber, this.cowButtonText);
+  UpdateSelectedCowNumber(this.selectedCowNumber);
 }
