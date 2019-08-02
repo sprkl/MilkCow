@@ -33,53 +33,96 @@ class SampleAppPage extends StatefulWidget {
 }
 
 class _SampleAppPageState extends State<SampleAppPage> {
-  List widgets = [];
-  int dayCount = 1;
-  double _progressValue = 0.0;
+ List widgets = [];
+ int dayCount = 1;
 
-  @override
-  void initState() {
-    super.initState();
+ int totalCowNumber = 0;
+
+ bool canShowCowButton = false;
+ double selectedCowNumber = 0;
+ var cowButtonText = '';
+
+ @override
+ void initState() {
+   super.initState();
+ }
+ 
+ @override
+ Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text("Jour $dayCount"),
+      ),
+      body: new SingleChildScrollView(
+        child: new Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            new Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget> [
+                new Container(
+                  // A fixed-height child.
+                  height: 40.0,
+                  padding: const EdgeInsets.all(10.0),
+                  child: new LinearProgressIndicator(
+                    value: totalCowNumber / 100.0,
+                    backgroundColor: Colors.grey,
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.teal),
+                  )
+                ),
+                new Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget> [
+                    new Text("Nombre de vaches :"),
+                    new Slider(
+                      min: -10,
+                      divisions: 20,
+                      max: 10,
+                      value: selectedCowNumber,
+                      onChanged: onCowNumberValuedChanged
+                    )
+                  ]
+                ),
+                new Visibility(
+                  visible: canShowCowButton,
+                  child: new RaisedButton(
+                    elevation: 2,
+                    child: Text(cowButtonText),
+                    onPressed: () {
+                      //Insert event to be fired up when button is clicked here
+                      //in this case, this increments our countValue variable by one.
+                      //setState(() => _progressValue += 0.1);
+                    }
+                  )
+                )
+              ]
+            ),
+            new Container(
+              // A fixed-height child.
+              height: 40.0,
+              padding: const EdgeInsets.all(10.0),
+              child: new LinearProgressIndicator(
+                value: totalCowNumber / 100.0,
+                backgroundColor: Colors.grey,
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.teal),
+              )
+            ),
+          ],
+        ),
+      )
+    );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return new Scaffold(
-        appBar: new AppBar(
-          title: new Text("Jour $dayCount"),
-        ),
-        body: new ListView.builder(
-            itemCount: 2,
-            itemBuilder: (BuildContext context, int position) {
-              return new Column(children: [
-                new Container(
-                  height: 30,
-                  child: new Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: new Container(
-                      child: new LinearProgressIndicator(
-                        value: _progressValue,
-                        backgroundColor: Colors.grey,
-                        valueColor: AlwaysStoppedAnimation<Color>(Colors.teal),
-                      ),
-                    ),
-                  ),
-                ),
-                new Container(
-                  height: 60,
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: new RaisedButton(
-                      child: Text('Click Button'),
-                      onPressed: () {
-                        //Insert event to be fired up when button is clicked here
-                        //in this case, this increments our countValue variable by one.
-                        setState(() => _progressValue += 0.1);
-                      },
-                    ),
-                  ),
-                )
-              ]);
-            }));
+  onCowNumberValuedChanged(value) {
+    setState(() {
+      selectedCowNumber = value;
+      canShowCowButton = value != 0;
+
+      var selectedCowNumberInt = selectedCowNumber.toInt();
+      cowButtonText = selectedCowNumber < 0 ? 'Vendre $selectedCowNumberInt vache(s)': 'Acheter $selectedCowNumberInt vache(s)';
+    });
   }
 }
