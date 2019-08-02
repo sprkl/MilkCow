@@ -26,7 +26,12 @@ class SampleAppPage extends StatefulWidget {
 class _SampleAppPageState extends State<SampleAppPage> {
  List widgets = [];
  int dayCount = 1;
- double _progressValue = 0.0;
+
+ int totalCowNumber = 0;
+
+ bool canShowCowButton = false;
+ double selectedCowNumber = 0;
+ var cowButtonText = '';
 
  @override
  void initState() {
@@ -53,26 +58,37 @@ class _SampleAppPageState extends State<SampleAppPage> {
                   height: 40.0,
                   padding: const EdgeInsets.all(10.0),
                   child: new LinearProgressIndicator(
-                    value: _progressValue,
+                    value: totalCowNumber.toDouble(),
                     backgroundColor: Colors.grey,
                     valueColor: AlwaysStoppedAnimation<Color>(Colors.teal),
                   )
                 ),
-                new Slider(
-                  value: _progressValue,
-                  onChanged: (value) {
-                    setState(() => _progressValue = value);
-                  }
+                new Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget> [
+                    new Text("Nombre de vaches :"),
+                    new Slider(
+                      min: -10,
+                      divisions: 20,
+                      max: 10,
+                      value: selectedCowNumber,
+                      onChanged: onCowNumberValuedChanged
+                    )
+                  ]
                 ),
-                // new RaisedButton(
-                //   elevation: 2,
-                //   child: Text(''),
-                //   onPressed: () {
-                //     //Insert event to be fired up when button is clicked here
-                //     //in this case, this increments our countValue variable by one.
-                //     setState(() => _progressValue += 0.1);
-                //   }
-                // )
+                new Visibility(
+                  visible: canShowCowButton,
+                  child: new RaisedButton(
+                    elevation: 2,
+                    child: Text(cowButtonText),
+                    onPressed: () {
+                      //Insert event to be fired up when button is clicked here
+                      //in this case, this increments our countValue variable by one.
+                      //setState(() => _progressValue += 0.1);
+                    }
+                  )
+                )
               ]
             ),
             new Container(
@@ -80,7 +96,7 @@ class _SampleAppPageState extends State<SampleAppPage> {
               height: 40.0,
               padding: const EdgeInsets.all(10.0),
               child: new LinearProgressIndicator(
-                value: _progressValue,
+                value: totalCowNumber.toDouble(),
                 backgroundColor: Colors.grey,
                 valueColor: AlwaysStoppedAnimation<Color>(Colors.teal),
               )
@@ -88,6 +104,16 @@ class _SampleAppPageState extends State<SampleAppPage> {
           ],
         ),
       )
-   );
- }
+    );
+  }
+
+  onCowNumberValuedChanged(value) {
+    setState(() {
+      selectedCowNumber = value;
+      canShowCowButton = value != 0;
+
+      var selectedCowNumberInt = selectedCowNumber.toInt();
+      cowButtonText = selectedCowNumber < 0 ? 'Vendre $selectedCowNumberInt vache(s)': 'Acheter $selectedCowNumberInt vache(s)';
+    });
+  }
 }
