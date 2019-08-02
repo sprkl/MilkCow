@@ -30,3 +30,5 @@ int _incrementDay(int dayCount, IncrementDay action){
 double _updateMilkPrice(double milePrice, UpdateMilkPrice action) {
   return action.price;
 }
+
+_updateSelectedCowNumber(, UpdateSelectedCowNumber action)
