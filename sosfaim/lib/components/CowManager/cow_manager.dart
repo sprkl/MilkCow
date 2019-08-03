@@ -29,7 +29,9 @@ class CowManager extends StatelessWidget implements IModule {
             selectedCowNumber: vm.selectedCowNumber, 
             onCowNumberValuedChanged: vm.onCowNumberValuedChanged,
             buyCow: vm.buyCow,
-            sellCow: vm.sellCow
+            sellCow: vm.sellCow,
+            milkCows: vm.milkCows,
+            canMilkCows: vm.canMilkCows,
           );
         });
   }

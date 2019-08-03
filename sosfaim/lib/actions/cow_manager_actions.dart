@@ -17,3 +17,5 @@ class SellCow {
 
   SellCow(this.cowCount, this.totalCost);
 }
+
+class MilkCows {}

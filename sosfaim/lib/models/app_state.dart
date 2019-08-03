@@ -11,6 +11,7 @@ class AppState {
   // Cow Manager Module
   final int totalCowNumber;
   final double selectedCowNumber;
+  final bool canMilkCows;
 
   // Abrasion Module
   final int abrasion;
@@ -24,6 +25,7 @@ class AppState {
       this.milkProduction = 0,
       this.totalCowNumber = 10,
       this.selectedCowNumber = 0,
+      this.canMilkCows = true,
       this.abrasion = 20});
 
   AppState copyWith(
@@ -35,7 +37,9 @@ class AppState {
       int milkProduction,
       int totalCowNumber,
       double selectedCowNumber,
+      bool canMilkCows,
       int abrasion}) {
+        
     return AppState(
         isLoading: isLoading ?? this.isLoading,
         modules: modules ?? this.modules,
@@ -45,6 +49,7 @@ class AppState {
         milkProduction: milkProduction ?? this.milkProduction,
         totalCowNumber: totalCowNumber ?? this.totalCowNumber,
         selectedCowNumber: selectedCowNumber ?? this.selectedCowNumber,
+        canMilkCows: canMilkCows ?? this.canMilkCows,
         abrasion: abrasion ?? this.abrasion);
   }
 }

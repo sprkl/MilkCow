@@ -12,12 +12,15 @@ class CowManagerViewModel {
   final Function onCowNumberValuedChanged;
   final Function buyCow;
   final Function sellCow;
+  final Function milkCows;
+  final bool canMilkCows;
 
   factory CowManagerViewModel.from(Store<AppState> store) {
 
     final onCowNumberValuedChanged = (selectedCowNumber) => store.dispatch(UpdateSelectedCowNumber(selectedCowNumber));
     final buyCow = (cowCount, price) => store.dispatch(BuyCow(cowCount, price));
     final sellCow = (cowCount, price) => store.dispatch(SellCow(cowCount, price));
+    final milkCows = () => store.dispatch(MilkCows());
 
     return CowManagerViewModel(
       capital: store.state.capital,
@@ -25,7 +28,9 @@ class CowManagerViewModel {
       selectedCowNumber: store.state.selectedCowNumber,
       onCowNumberValuedChanged: onCowNumberValuedChanged,
       buyCow: buyCow,
-      sellCow: sellCow);
+      sellCow: sellCow,
+      milkCows: milkCows, 
+      canMilkCows: store.state.canMilkCows);
   }
 
   CowManagerViewModel({
@@ -34,5 +39,7 @@ class CowManagerViewModel {
     @required this.selectedCowNumber,
     @required this.onCowNumberValuedChanged,
     @required this.buyCow,
-    @required this.sellCow});
+    @required this.sellCow,
+    @required this.milkCows,
+    @required this.canMilkCows});
 }

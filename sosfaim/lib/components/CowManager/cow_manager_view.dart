@@ -9,6 +9,8 @@ class CowManagerView extends StatelessWidget {
   final Function onCowNumberValuedChanged;
   final Function buyCow;
   final Function sellCow;
+  final Function milkCows;
+  final bool canMilkCows;
 
   final int cowSellPrice = 1000;
   final int cowBuyPrice = 1500;
@@ -20,7 +22,9 @@ class CowManagerView extends StatelessWidget {
     @required this.selectedCowNumber, 
     @required this.onCowNumberValuedChanged, 
     @required this.buyCow,
-    @required this.sellCow});
+    @required this.sellCow,
+    @required this.milkCows,
+    @required this.canMilkCows});
 
   @override
   Widget build(BuildContext context) {
@@ -96,6 +100,23 @@ class CowManagerView extends StatelessWidget {
                   )
                 )
               ]
+            )
+          ),
+          new Visibility(
+            visible: canMilkCows,
+            child: new RaisedButton(
+              elevation: 2,
+              child: Text('Traire: todo'),
+              onPressed: milkCows
+            )
+          ),
+           new Visibility(
+            visible: !canMilkCows,
+            child: new Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: new Text(
+              'Vous avez déjà trait votre bétail aujourd\'hui !'
+              )
             )
           ),
           new Container(

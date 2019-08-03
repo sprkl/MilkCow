@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:redux/redux.dart';
 import 'package:sosfaim/actions/abrasion_module_actions.dart';
 import 'package:sosfaim/actions/actions.dart';
@@ -13,12 +15,22 @@ AppState appReducer(AppState state, action) {
     TypedReducer<AppState, UpdateSelectedCowNumber>(_updateSelectedCowNumber),
     TypedReducer<AppState, RepairMaterial>(_repairMaterial),
     TypedReducer<AppState, BuyCow>(_buyCow),
-    TypedReducer<AppState, SellCow>(_sellCow)
+    TypedReducer<AppState, SellCow>(_sellCow),
+    TypedReducer<AppState, MilkCows>(_milkCows)
   ])(state, action);
 }
 
 AppState _incrementDay(AppState state, IncrementDay action){
-  return state.copyWith(dayCount : state.dayCount+1);
+
+  var abrasion = state.abrasion + Random().nextInt(5);
+  if(abrasion > 100)
+    abrasion = 100;
+
+  return state.copyWith(
+    dayCount : state.dayCount + 1,
+    canMilkCows: true,
+    abrasion: abrasion
+  );
 }
 
 AppState _updateMilkPrice(AppState state, UpdateMilkPrice action) {
@@ -52,5 +64,15 @@ AppState _sellCow(AppState state, SellCow action) {
     totalCowNumber: state.totalCowNumber - action.cowCount,
     capital: state.capital + action.totalCost,
     selectedCowNumber: 0
+  );
+}
+
+AppState _milkCows(AppState state, MilkCows action) {
+  var estimatedMilkProduction = state.milkProduction + state.totalCowNumber * 30;
+  var milkProductionWithAbrasion = estimatedMilkProduction - (estimatedMilkProduction * state.abrasion * 0.01);
+
+  return state.copyWith(
+    milkProduction: milkProductionWithAbrasion.toInt(),
+    canMilkCows: false
   );
 }
