@@ -25,7 +25,7 @@ class MilkSellManagerView extends StatelessWidget{
         children: <Widget> [
           new Container(
             alignment: Alignment.centerLeft,
-            padding: const EdgeInsets.only(left: 10.0, top: 10.0, right: 10.0),
+            padding: const EdgeInsets.only(left: 10.0, right: 10.0),
             child: new Text(
               'Stock de lait',
               style: new TextStyle(

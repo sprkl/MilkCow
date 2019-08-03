@@ -72,7 +72,7 @@ AppState _sellCow(AppState state, SellCow action) {
 }
 
 AppState _milkCows(AppState state, MilkCows action) {
-  var milkLitters = state.milkLitters + state.totalCowNumber * (30 * state.abrasion * 0.01);
+  var milkLitters = state.milkLitters + state.totalCowNumber * (30 * ((100 - state.abrasion) / 100.0));
 
   return state.copyWith(
     milkLitters: milkLitters.toInt(),
