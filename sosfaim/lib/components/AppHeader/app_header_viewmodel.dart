@@ -14,19 +14,16 @@ class AppHeaderViewModel {
 
     final onClick = () => store.dispatch(AddCapital(5));
 
-
     return AppHeaderViewModel(
-        capital: store.state.capital,
-        milkPrice: store.state.milkPrice,
-        milkProduction: store.state.milkProduction,
-        onClick: onClick);
+      capital: store.state.capital,
+      milkPrice: store.state.milkPrice,
+      milkProduction: store.state.milkProduction,
+      onClick: onClick);
   }
 
-
-
-  AppHeaderViewModel(
-      {@required this.capital,
-      @required this.milkPrice,
-      @required this.milkProduction,
-      @required this.onClick});
+  AppHeaderViewModel({
+    @required this.capital,
+    @required this.milkPrice,
+    @required this.milkProduction,
+    @required this.onClick});
 }

@@ -6,6 +6,7 @@ import 'package:sosfaim/models/app_state.dart';
 
 class CowManagerViewModel {
 
+  final int capital;
   final int totalCowNumber;
   final double selectedCowNumber;
   final Function onCowNumberValuedChanged;
@@ -15,13 +16,15 @@ class CowManagerViewModel {
     final onCowNumberValuedChanged = (selectedCowNumber) => store.dispatch(UpdateSelectedCowNumber(selectedCowNumber));
 
     return CowManagerViewModel(
-        totalCowNumber: store.state.totalCowNumber,
-        selectedCowNumber: store.state.selectedCowNumber,
-        onCowNumberValuedChanged: onCowNumberValuedChanged);
+      capital: store.state.capital,
+      totalCowNumber: store.state.totalCowNumber,
+      selectedCowNumber: store.state.selectedCowNumber,
+      onCowNumberValuedChanged: onCowNumberValuedChanged);
   }
 
-  CowManagerViewModel(
-      {@required this.totalCowNumber,
-      @required this.selectedCowNumber,
-      @required this.onCowNumberValuedChanged});
+  CowManagerViewModel({
+    @required this.capital,
+    @required this.totalCowNumber,
+    @required this.selectedCowNumber,
+    @required this.onCowNumberValuedChanged});
 }

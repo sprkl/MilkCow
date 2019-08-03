@@ -19,12 +19,12 @@ class AppState {
       {this.isLoading = false,
       this.modules = const [],
       this.dayCount = 1,
-      this.capital = 1000,
+      this.capital = 10000,
       this.milkPrice = 1,
       this.milkProduction = 0,
       this.totalCowNumber = 10,
       this.selectedCowNumber = 0,
-      this.abrasion = 0});
+      this.abrasion = 20});
 
   AppState copyWith(
       {bool isLoading,

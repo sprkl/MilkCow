@@ -3,27 +3,56 @@ import 'package:flutter/material.dart';
 
 class CowManagerView extends StatelessWidget {
   
+  final int capital;
   final int totalCowNumber;
   final double selectedCowNumber;
   final Function onCowNumberValuedChanged;
 
-  CowManagerView(
-      {@required this.totalCowNumber,
-      @required this.selectedCowNumber, 
-      @required this.onCowNumberValuedChanged});
+  final int cowSellPrice = 1000;
+  final int cowBuyPrice = 1500;
+  final int maxCowCount = 100;
+
+  CowManagerView({
+    @required this.capital,
+    @required this.totalCowNumber,
+    @required this.selectedCowNumber, 
+    @required this.onCowNumberValuedChanged});
 
   @override
   Widget build(BuildContext context) {
 
     final canShowCowButton = selectedCowNumber != 0; 
     final selectedCowNumberInt = selectedCowNumber.toInt(); //todo absolute value
-    final selectedCowCost = selectedCowNumberInt > 0 ? selectedCowNumberInt * 1500 : selectedCowNumberInt * 1000;
+    final selectedCowCost = selectedCowNumberInt > 0 ? selectedCowNumberInt * -cowBuyPrice : selectedCowNumberInt * -cowSellPrice;
     final absSelectedCowNumberInt = selectedCowNumberInt.abs();
     final cowButtonText = selectedCowNumber < 0 ? 'Vendre $absSelectedCowNumberInt vache(s): $selectedCowCost €': 'Acheter $absSelectedCowNumberInt vache(s): $selectedCowCost €';
+    double maxBuyableCowCount = getClampedMaxBuyableCount();
     
     return new Container(
       child: new Column(
         children: <Widget> [
+          new Container(
+            alignment: Alignment.centerLeft,
+            padding: const EdgeInsets.only(left: 10.0, top: 10.0, right: 10.0),
+            child: new Text(
+              'Bétail',
+              style: new TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18
+              )
+            ),
+          ),
+          new Container(
+            alignment: Alignment.centerLeft,
+            padding: const EdgeInsets.all(10.0),
+            child: new Text(
+              'Les vaches produisent du lait. Vous pouvez les traire chaque jour pour augmenter votre stock de lait.',
+              style: new TextStyle(
+                fontStyle: FontStyle.italic,
+                fontSize: 12
+              )
+            ),
+          ),
           new Container(
             height: 40.0,
             padding: const EdgeInsets.only(top: 10.0, right: 10.0, bottom: 10.0),
@@ -50,9 +79,9 @@ class CowManagerView extends StatelessWidget {
                         height: 40.0,
                         child: new Align(
                           alignment: Alignment.center,
-                          child : new Text(
+                          child: new Text(
                             '$totalCowNumber/100',
-                            style: TextStyle(
+                            style: new TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.white
                             ),
@@ -70,12 +99,12 @@ class CowManagerView extends StatelessWidget {
             padding: const EdgeInsets.only(left: 10.0, right: 10.0),
             child: new Row(
               children: <Widget> [
-                new Text("Nombre de vaches :"),
+                new Text("Achat / vente :"),
                  new Expanded(
                   child: new Slider(
-                    min: -10,
-                    divisions: 20,
-                    max: 10,
+                    min: -totalCowNumber.toDouble(),
+                    divisions: totalCowNumber + maxBuyableCowCount.toInt(),
+                    max: maxBuyableCowCount,
                     value: selectedCowNumber,
                     onChanged: onCowNumberValuedChanged
                   )
@@ -98,5 +127,16 @@ class CowManagerView extends StatelessWidget {
         ]
       )
     );
+  }
+
+  getClampedMaxBuyableCount() {
+    var maxBuyableCowCount = (capital / cowBuyPrice).toInt().toDouble();
+
+    if(maxBuyableCowCount < 0 || maxBuyableCowCount < 1)
+      maxBuyableCowCount = 0;
+    else if(maxBuyableCowCount > (maxCowCount - selectedCowNumber)) 
+      maxBuyableCowCount = maxCowCount - selectedCowNumber;
+
+    return maxBuyableCowCount;
   }
 }

@@ -8,13 +8,15 @@ class AbrasionModuleViewModel {
   final Function repairMaterial;
 
   factory AbrasionModuleViewModel.from(Store<AppState> store) {
+
     final repairMaterial = () => store.dispatch(RepairMaterial);
 
     return AbrasionModuleViewModel(
-        abrasion: store.state.abrasion, repairMaterial: repairMaterial);
+      abrasion: store.state.abrasion,
+      repairMaterial: repairMaterial);
   }
 
-  AbrasionModuleViewModel(
-      {@required this.abrasion,
-       @required this.repairMaterial});
+  AbrasionModuleViewModel({
+    @required this.abrasion,
+    @required this.repairMaterial});
 }

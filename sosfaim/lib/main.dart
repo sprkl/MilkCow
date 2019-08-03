@@ -8,6 +8,7 @@ import 'components/AbrasionModule/abrasion_module.dart';
 import 'models/app_state.dart';
 import 'reducers/cow_module_reducer.dart';
 import 'reducers/app_state_reducer.dart';
+import 'reducers/abrasion_module_reducer.dart';
 
 void main() {
   runApp(new SampleApp());
@@ -15,7 +16,7 @@ void main() {
 
 class SampleApp extends StatelessWidget {
   final store = Store<AppState>(
-      combineReducers<AppState>([appReducer, cowModuleReducer]),
+      combineReducers<AppState>([appReducer, cowModuleReducer, abrasionModuleReducer]),
       initialState: new AppState());
 
   @override
@@ -40,12 +41,6 @@ class SampleAppPage extends StatefulWidget {
 
 class _SampleAppPageState extends State<SampleAppPage> {
   int dayCount = 1;
-
-  int totalCowNumber = 0;
-
-  bool canShowCowButton = false;
-  double selectedCowNumber = 0;
-  var cowButtonText = '';
 
   @override
   void initState() {

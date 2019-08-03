@@ -4,14 +4,14 @@ import 'package:sosfaim/actions/actions.dart';
 import 'package:sosfaim/actions/cow_manager_actions.dart';
 import 'package:sosfaim/models/app_state.dart';
 
-
 // We create the State reducer by combining many smaller reducers into one!
 AppState appReducer(AppState state, action) {
   return combineReducers<AppState>([
     TypedReducer<AppState, IncrementDay>(_incrementDay),
     TypedReducer<AppState, AddCapital>(_addCapital),
     TypedReducer<AppState, UpdateMilkPrice>(_updateMilkPrice),
-    TypedReducer<AppState, UpdateSelectedCowNumber>(_updateSelectedCowNumber)
+    TypedReducer<AppState, UpdateSelectedCowNumber>(_updateSelectedCowNumber),
+    TypedReducer<AppState, RepairMaterial>(_repairMaterial)
   ])(state, action);
 }
 
