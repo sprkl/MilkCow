@@ -1,23 +1,22 @@
-
-
-class AddCapital{
+class AddCapital {
   final int amount;
 
   AddCapital(this.amount);
 }
 
-class UpdateMilkPrice{
+class UpdateMilkPrice {
   final double price;
 
   UpdateMilkPrice(this.price);
 }
 
-class UpdateMilkProduction{
+class UpdateMilkProduction {
   final int production;
 
   UpdateMilkProduction(this.production);
 }
 
+<<<<<<< HEAD
 class IncrementDay{
   final int dayCount;
 
@@ -29,3 +28,6 @@ class UpdateSelectedCowNumber {
   
   UpdateSelectedCowNumber(this.selectedCowNumber);
 }
+=======
+class IncrementDay {}
+>>>>>>> 5ea112332e500bf5483512aa2bc2346ec3e33392

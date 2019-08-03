@@ -1,7 +1,7 @@
-
-
 import 'package:redux/redux.dart';
+import 'package:sosfaim/actions/abrasion_module_actions.dart';
 import 'package:sosfaim/actions/actions.dart';
+import 'package:sosfaim/actions/cow_manager_actions.dart';
 import 'package:sosfaim/models/app_state.dart';
 
 
@@ -29,4 +29,8 @@ AppState _updateSelectedCowNumber(AppState state, UpdateSelectedCowNumber action
 
 AppState _addCapital(AppState state, AddCapital action){
   return state.copyWith(capital: state.capital+action.amount);
+}
+
+AppState _repairMaterial(AppState state, RepairMaterial action){
+  return state.copyWith(capital: state.capital - state.abrasion * 10);
 }
