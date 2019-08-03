@@ -18,7 +18,11 @@ class UpdateMilkProduction{
   UpdateMilkProduction(this.production);
 }
 
-class IncrementDay{}
+class IncrementDay{
+  final int dayCount;
+
+  IncrementDay(this.dayCount);
+}
 
 class UpdateSelectedCowNumber {
   final double selectedCowNumber;
