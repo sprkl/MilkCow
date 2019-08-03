@@ -7,6 +7,8 @@ class CowManagerView extends StatelessWidget {
   final int totalCowNumber;
   final double selectedCowNumber;
   final Function onCowNumberValuedChanged;
+  final Function buyCow;
+  final Function sellCow;
 
   final int cowSellPrice = 1000;
   final int cowBuyPrice = 1500;
@@ -16,7 +18,9 @@ class CowManagerView extends StatelessWidget {
     @required this.capital,
     @required this.totalCowNumber,
     @required this.selectedCowNumber, 
-    @required this.onCowNumberValuedChanged});
+    @required this.onCowNumberValuedChanged, 
+    @required this.buyCow,
+    @required this.sellCow});
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +106,7 @@ class CowManagerView extends StatelessWidget {
                 new Text("Achat / vente :"),
                  new Expanded(
                   child: new Slider(
-                    min: -totalCowNumber.toDouble(),
+                    min: totalCowNumber == 0 ? 0.0 : -totalCowNumber.toDouble(),
                     divisions: totalCowNumber + maxBuyableCowCount.toInt(),
                     max: maxBuyableCowCount,
                     value: selectedCowNumber,
@@ -118,9 +122,10 @@ class CowManagerView extends StatelessWidget {
               elevation: 2,
               child: Text(cowButtonText),
               onPressed: () {
-                //Insert event to be fired up when button is clicked here
-                //in this case, this increments our countValue variable by one.
-                //setState(() => _progressValue += 0.1);
+                if(selectedCowNumberInt > 0)
+                  buyCow(absSelectedCowNumberInt, selectedCowCost);
+                else if(selectedCowNumberInt < 0)
+                  sellCow(absSelectedCowNumberInt, selectedCowCost);
               }
             )
           )

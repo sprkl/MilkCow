@@ -11,7 +11,9 @@ AppState appReducer(AppState state, action) {
     TypedReducer<AppState, AddCapital>(_addCapital),
     TypedReducer<AppState, UpdateMilkPrice>(_updateMilkPrice),
     TypedReducer<AppState, UpdateSelectedCowNumber>(_updateSelectedCowNumber),
-    TypedReducer<AppState, RepairMaterial>(_repairMaterial)
+    TypedReducer<AppState, RepairMaterial>(_repairMaterial),
+    TypedReducer<AppState, BuyCow>(_buyCow),
+    TypedReducer<AppState, SellCow>(_sellCow)
   ])(state, action);
 }
 
@@ -31,8 +33,24 @@ AppState _addCapital(AppState state, AddCapital action){
   return state.copyWith(capital: state.capital+action.amount);
 }
 
-AppState _repairMaterial(AppState state, RepairMaterial action){
+AppState _repairMaterial(AppState state, RepairMaterial action) {
   return state.copyWith(
     capital: state.capital - action.repairCost,
     abrasion: 0);
+}
+
+AppState _buyCow(AppState state, BuyCow action) {
+  return state.copyWith(
+    totalCowNumber: state.totalCowNumber + action.cowCount,
+    capital: state.capital + action.totalCost, // action.totalCost is negative
+    selectedCowNumber: 0
+  );
+}
+
+AppState _sellCow(AppState state, SellCow action) {
+  return state.copyWith(
+    totalCowNumber: state.totalCowNumber - action.cowCount,
+    capital: state.capital + action.totalCost,
+    selectedCowNumber: 0
+  );
 }
