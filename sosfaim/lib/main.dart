@@ -51,32 +51,7 @@ class _SampleAppPageState extends State<SampleAppPage> {
   }
 
   @override
-<<<<<<< HEAD
   Widget build(BuildContext context){
     return new MainPageManager();
-=======
-  Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text("Jour $dayCount"),
-      ),
-      body: new Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-        new AppHeader(),
-        new SingleChildScrollView(
-          child: new Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              new CowManager(),
-              new Divider(
-                color: Colors.grey,
-              ),
-              new AbrasionModule()
-            ],
-          ),
-        )
-      ])
-    );
->>>>>>> 5ea112332e500bf5483512aa2bc2346ec3e33392
   }
 }
