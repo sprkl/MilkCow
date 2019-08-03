@@ -32,5 +32,7 @@ AppState _addCapital(AppState state, AddCapital action){
 }
 
 AppState _repairMaterial(AppState state, RepairMaterial action){
-  return state.copyWith(capital: state.capital - state.abrasion * 10);
+  return state.copyWith(
+    capital: state.capital - action.repairCost,
+    abrasion: 0);
 }

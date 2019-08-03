@@ -9,7 +9,7 @@ class AbrasionModuleViewModel {
 
   factory AbrasionModuleViewModel.from(Store<AppState> store) {
 
-    final repairMaterial = () => store.dispatch(RepairMaterial);
+    final repairMaterial = (repairCost) => store.dispatch(RepairMaterial(repairCost));
 
     return AbrasionModuleViewModel(
       abrasion: store.state.abrasion,

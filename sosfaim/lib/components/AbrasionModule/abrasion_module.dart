@@ -17,15 +17,16 @@ class AbrasionModule extends StatelessWidget implements IModule {
   @override
   Widget build(BuildContext context) {
 
-    return StoreConnector<AppState, AbrasionModuleViewModel>(
-        distinct: true,
-        converter: (Store<AppState> store) {
-          return AbrasionModuleViewModel.from(store);
-        },
-        builder: (context, vm) {
-          return AbrasionModuleView(
-              abrasion: vm.abrasion,
-              repairMaterial: vm.repairMaterial);
-        });
+  return StoreConnector<AppState, AbrasionModuleViewModel> (
+    distinct: true,
+    converter: (Store<AppState> store) {
+      return AbrasionModuleViewModel.from(store);
+    },
+    builder: (context, vm) {
+      return AbrasionModuleView(
+        abrasion: vm.abrasion,
+        repairMaterial: vm.repairMaterial
+      );
+    });
   }
 }

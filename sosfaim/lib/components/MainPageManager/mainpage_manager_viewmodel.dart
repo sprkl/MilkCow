@@ -10,14 +10,14 @@ class MainPageManagerViewModel{
 
   factory MainPageManagerViewModel.from(Store<AppState> store){
 
-    final onDayCountValueChanged = (dayCount) => store.dispatch(IncrementDay(dayCount));
+    final onDayCountValueChanged = () => store.dispatch(IncrementDay());
 
     return MainPageManagerViewModel(
       dayCount: store.state.dayCount,
       onDayCountValueChanged: onDayCountValueChanged);
   }
 
-      MainPageManagerViewModel(
-      {@required this.dayCount,
-      @required this.onDayCountValueChanged});
+  MainPageManagerViewModel({
+    @required this.dayCount,
+    @required this.onDayCountValueChanged});
 }

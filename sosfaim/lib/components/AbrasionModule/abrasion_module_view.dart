@@ -14,8 +14,8 @@ class AbrasionModuleView extends StatelessWidget {
 
     var color = getAbrasionColor();
     var canShowRepairButton = abrasion > 0;
-    var repairCost = abrasion * - 30;
-    var repairButtonText = 'Réparer: $repairCost €';
+    var repairCost = abrasion * 30;
+    var repairButtonText = 'Réparer: -$repairCost €';
 
     return new Container(
       child: new Column(
@@ -35,7 +35,7 @@ class AbrasionModuleView extends StatelessWidget {
             alignment: Alignment.centerLeft,
             padding: const EdgeInsets.all(10.0),
             child: new Text(
-              'L\'état du matériel influence votre production de lait. Plus votre matériel est usé, moins vos vaches produisent de lait.',
+              'L\'état du matériel influence votre production de lait. Plus votre matériel est usé, moins vous aurez du lait de votre bétail.',
               style: new TextStyle(
                 fontStyle: FontStyle.italic,
                 fontSize: 12
@@ -89,7 +89,7 @@ class AbrasionModuleView extends StatelessWidget {
               elevation: 2,
               child: Text(repairButtonText),
               onPressed: () {
-                repairMaterial();
+                repairMaterial(repairCost);
               }
             )
           )
