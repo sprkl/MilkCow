@@ -66,6 +66,9 @@ class _SampleAppPageState extends State<SampleAppPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               new CowManager(),
+              new Divider(
+                color: Colors.grey,
+              ),
               new AbrasionModule()
             ],
           ),

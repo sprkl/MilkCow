@@ -15,5 +15,6 @@ class AbrasionModuleViewModel {
   }
 
   AbrasionModuleViewModel(
-      {@required this.abrasion, @required this.repairMaterial});
+      {@required this.abrasion,
+       @required this.repairMaterial});
 }

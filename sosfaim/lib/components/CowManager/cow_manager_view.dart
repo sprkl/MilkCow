@@ -16,8 +16,10 @@ class CowManagerView extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final canShowCowButton = selectedCowNumber != 0; 
-    final selectedCowNumberInt = selectedCowNumber.toInt();
-    final cowButtonText = selectedCowNumber < 0 ? 'Vendre $selectedCowNumberInt vache(s)': 'Acheter $selectedCowNumberInt vache(s)';
+    final selectedCowNumberInt = selectedCowNumber.toInt(); //todo absolute value
+    final selectedCowCost = selectedCowNumberInt > 0 ? selectedCowNumberInt * 1500 : selectedCowNumberInt * 1000;
+    final absSelectedCowNumberInt = selectedCowNumberInt.abs();
+    final cowButtonText = selectedCowNumber < 0 ? 'Vendre $absSelectedCowNumberInt vache(s): $selectedCowCost €': 'Acheter $absSelectedCowNumberInt vache(s): $selectedCowCost €';
     
     return new Container(
       child: new Column(
