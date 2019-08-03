@@ -1,5 +1,9 @@
 import 'package:sosfaim/modules/module.dart';
 
+import 'loan.dart';
+
+const initialValue = 10000;
+
 class AppState {
   final bool isLoading;
   final List<IModule> modules;
@@ -16,6 +20,9 @@ class AppState {
   // Abrasion Module
   final int abrasion;
 
+  // Loan Manager
+  final List<Loan> loans;
+
   AppState(
       {this.isLoading = false,
       this.modules = const [],
@@ -26,7 +33,10 @@ class AppState {
       this.totalCowNumber = 10,
       this.selectedCowNumber = 0,
       this.canMilkCows = true,
-      this.abrasion = 20});
+      this.abrasion = 20,
+      this.loans = const [
+        Loan(leftLoan: initialValue, refundWeeksLeft: 60, weeklyInterests: 10)
+      ]});
 
   AppState copyWith(
       {bool isLoading,
@@ -38,8 +48,8 @@ class AppState {
       int totalCowNumber,
       double selectedCowNumber,
       bool canMilkCows,
-      int abrasion}) {
-        
+      int abrasion,
+      List<Loan> loans}) {
     return AppState(
         isLoading: isLoading ?? this.isLoading,
         modules: modules ?? this.modules,
@@ -50,6 +60,7 @@ class AppState {
         totalCowNumber: totalCowNumber ?? this.totalCowNumber,
         selectedCowNumber: selectedCowNumber ?? this.selectedCowNumber,
         canMilkCows: canMilkCows ?? this.canMilkCows,
-        abrasion: abrasion ?? this.abrasion);
+        abrasion: abrasion ?? this.abrasion,
+        loans: loans ?? this.loans);
   }
 }

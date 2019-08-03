@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sosfaim/components/AbrasionModule/abrasion_module.dart';
+import 'package:sosfaim/components/LoanManager/loan_manager.dart';
 import '../AppHeader/app_header.dart';
 import '../CowManager/cow_manager.dart';
 
@@ -27,6 +28,8 @@ class MainPageManagerView extends StatelessWidget{
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
+                new LoanManager(),
+                new Divider(color: Theme.of(context).primaryColor,),
                 new CowManager(),
                 new Divider(color: Theme.of(context).primaryColor,),
                 new AbrasionModule(),
