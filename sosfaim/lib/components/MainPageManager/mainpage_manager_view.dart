@@ -28,9 +28,9 @@ class MainPageManagerView extends StatelessWidget{
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 new CowManager(),
-                new Divider(),
+                new Divider(color: Theme.of(context).primaryColor,),
                 new AbrasionModule(),
-                new Divider()
+                new Divider(color: Theme.of(context).primaryColor,),
               ],
             ),
           )

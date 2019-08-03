@@ -22,7 +22,6 @@ class AppHeaderView extends StatelessWidget {
     return new Container(
       padding: EdgeInsets.all(10),
       color: Theme.of(context).backgroundColor.withAlpha(150),
-      height: 200.0,
       child:
           new Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
         new Column(children: <Widget>[
