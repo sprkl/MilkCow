@@ -22,14 +22,8 @@ AppState appReducer(AppState state, action) {
 
 AppState _incrementDay(AppState state, IncrementDay action){
 
-  var abrasion = state.abrasion + Random().nextInt(5);
-  if(abrasion > 100)
-    abrasion = 100;
-
   return state.copyWith(
     dayCount : state.dayCount + 1,
-    canMilkCows: true,
-    abrasion: abrasion
   );
 }
 
