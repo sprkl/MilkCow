@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sosfaim/components/AbrasionModule/abrasion_module.dart';
 import '../AppHeader/app_header.dart';
 import '../CowManager/cow_manager.dart';
+import '../MilkSellManager/milk_sell_manager.dart';
 
 class MainPageManagerView extends StatelessWidget{
 
@@ -28,6 +29,8 @@ class MainPageManagerView extends StatelessWidget{
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 new CowManager(),
+                new Divider(),
+                new MilkSellManager(),
                 new Divider(),
                 new AbrasionModule(),
                 new Divider()

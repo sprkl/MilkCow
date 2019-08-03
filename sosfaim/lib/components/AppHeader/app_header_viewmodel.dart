@@ -6,8 +6,6 @@ import 'package:sosfaim/models/app_state.dart';
 
 class AppHeaderViewModel {
   final int capital;
-  final double milkPrice;
-  final int milkProduction;
   final Function onClick;
 
   factory AppHeaderViewModel.from(Store<AppState> store) {
@@ -16,14 +14,10 @@ class AppHeaderViewModel {
 
     return AppHeaderViewModel(
       capital: store.state.capital,
-      milkPrice: store.state.milkPrice,
-      milkProduction: store.state.milkProduction,
       onClick: onClick);
   }
 
   AppHeaderViewModel({
     @required this.capital,
-    @required this.milkPrice,
-    @required this.milkProduction,
     @required this.onClick});
 }

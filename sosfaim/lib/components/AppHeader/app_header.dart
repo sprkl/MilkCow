@@ -17,8 +17,6 @@ class AppHeader extends StatelessWidget {
         builder: (context, vm) {
           return AppHeaderView(
               capital: vm.capital,
-              milkPrice: vm.milkPrice,
-              milkProduction: vm.milkProduction, 
               onClick: vm.onClick);
         });
   }

@@ -6,12 +6,16 @@ class AppState {
   final int dayCount;
   final int capital;
   final double milkPrice;
-  final int milkProduction;
 
   // Cow Manager Module
   final int totalCowNumber;
   final double selectedCowNumber;
   final bool canMilkCows;
+
+  // Milk Seller Manager
+  final int milkLitters;
+  final bool canSellMilk;
+  final double selectedLitterPrice;
 
   // Abrasion Module
   final int abrasion;
@@ -22,10 +26,12 @@ class AppState {
       this.dayCount = 1,
       this.capital = 10000,
       this.milkPrice = 1,
-      this.milkProduction = 0,
       this.totalCowNumber = 10,
       this.selectedCowNumber = 0,
       this.canMilkCows = true,
+      this.milkLitters = 0,
+      this.canSellMilk = true,
+      this.selectedLitterPrice = 1,
       this.abrasion = 20});
 
   AppState copyWith(
@@ -38,6 +44,9 @@ class AppState {
       int totalCowNumber,
       double selectedCowNumber,
       bool canMilkCows,
+      int milkLitters,
+      bool canSellMilk,
+      double selectedLitterPrice,
       int abrasion}) {
         
     return AppState(
@@ -46,10 +55,12 @@ class AppState {
         dayCount: dayCount ?? this.dayCount,
         capital: capital ?? this.capital,
         milkPrice: milkPrice ?? this.milkPrice,
-        milkProduction: milkProduction ?? this.milkProduction,
         totalCowNumber: totalCowNumber ?? this.totalCowNumber,
         selectedCowNumber: selectedCowNumber ?? this.selectedCowNumber,
         canMilkCows: canMilkCows ?? this.canMilkCows,
+        milkLitters: milkLitters ?? this.milkLitters,
+        canSellMilk: canSellMilk ?? this.canSellMilk,
+        selectedLitterPrice: selectedLitterPrice ?? this.selectedLitterPrice,
         abrasion: abrasion ?? this.abrasion);
   }
 }
