@@ -4,6 +4,7 @@ import 'package:redux/redux.dart';
 import 'package:sosfaim/actions/abrasion_module_actions.dart';
 import 'package:sosfaim/actions/actions.dart';
 import 'package:sosfaim/actions/cow_manager_actions.dart';
+import 'package:sosfaim/actions/sell_milk_manager_actions.dart';
 import 'package:sosfaim/models/app_state.dart';
 
 // We create the State reducer by combining many smaller reducers into one!
@@ -16,14 +17,16 @@ AppState appReducer(AppState state, action) {
     TypedReducer<AppState, RepairMaterial>(_repairMaterial),
     TypedReducer<AppState, BuyCow>(_buyCow),
     TypedReducer<AppState, SellCow>(_sellCow),
-    TypedReducer<AppState, MilkCows>(_milkCows)
+    TypedReducer<AppState, MilkCows>(_milkCows),
+    TypedReducer<AppState, UpdateSelectedLitterPrice>(_updateSelectedLitterPrice),
+    TypedReducer<AppState, SellMilk>(_sellMilk)
   ])(state, action);
 }
 
 AppState _incrementDay(AppState state, IncrementDay action){
 
   return state.copyWith(
-    dayCount : state.dayCount + 1,
+    dayCount : state.dayCount + 1
   );
 }
 
@@ -62,11 +65,28 @@ AppState _sellCow(AppState state, SellCow action) {
 }
 
 AppState _milkCows(AppState state, MilkCows action) {
-  var estimatedMilkProduction = state.milkProduction + state.totalCowNumber * 30;
-  var milkProductionWithAbrasion = estimatedMilkProduction - (estimatedMilkProduction * state.abrasion * 0.01);
+  var milkLitters = state.milkLitters + state.totalCowNumber * (30 * ((100 - state.abrasion) / 100.0));
 
   return state.copyWith(
-    milkProduction: milkProductionWithAbrasion.toInt(),
+    milkLitters: milkLitters.toInt(),
     canMilkCows: false
+  );
+}
+
+AppState _updateSelectedLitterPrice(AppState state, UpdateSelectedLitterPrice action) {
+  return state.copyWith(
+    selectedLitterPrice: action.selectedLitterPrice
+  );
+}
+
+AppState _sellMilk(AppState state, SellMilk action) {
+
+  var soldMilkLitters = Random().nextInt(state.milkLitters);
+  var capital = state.capital + state.selectedLitterPrice * soldMilkLitters;
+
+  return state.copyWith(
+    capital: capital.toInt(),
+    milkLitters: state.milkLitters - soldMilkLitters,
+    canSellMilk: false
   );
 }

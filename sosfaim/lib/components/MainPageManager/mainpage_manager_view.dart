@@ -3,6 +3,7 @@ import 'package:sosfaim/components/AbrasionModule/abrasion_module.dart';
 import 'package:sosfaim/components/LoanManager/loan_manager.dart';
 import '../AppHeader/app_header.dart';
 import '../CowManager/cow_manager.dart';
+import '../MilkSellManager/milk_sell_manager.dart';
 
 class MainPageManagerView extends StatelessWidget{
 
@@ -31,6 +32,8 @@ class MainPageManagerView extends StatelessWidget{
                 new LoanManager(),
                 new Divider(color: Theme.of(context).primaryColor,),
                 new CowManager(),
+                new Divider(color: Theme.of(context).primaryColor,),
+                new MilkSellManager(),
                 new Divider(color: Theme.of(context).primaryColor,),
                 new AbrasionModule(),
                 new Divider(color: Theme.of(context).primaryColor,),
