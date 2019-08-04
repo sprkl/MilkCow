@@ -12,20 +12,22 @@ class ModuleLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Container(
+        padding: const EdgeInsets.all(20.0),
         child: new Column(children: <Widget>[
-      new Container(
-        alignment: Alignment.centerLeft,
-        padding: const EdgeInsets.only(left: 10.0, top: 10.0, right: 10.0),
-        child: new Text(this.title,
-            style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-      ),
-      new Container(
-        alignment: Alignment.centerLeft,
-        padding: const EdgeInsets.all(10.0),
-        child: new Text(this.subtitle,
-            style: new TextStyle(fontStyle: FontStyle.italic, fontSize: 12)),
-      ),
-      this.child,
-    ]));
+          new Container(
+            alignment: Alignment.centerLeft,
+            padding: const EdgeInsets.only(bottom: 10.0),
+            child: new Text(this.title,
+                style:
+                    new TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+          ),
+          new Container(
+            alignment: Alignment.centerLeft,
+            child: new Text(this.subtitle,
+                style:
+                    new TextStyle(fontStyle: FontStyle.italic, fontSize: 12)),
+          ),
+          this.child,
+        ]));
   }
 }

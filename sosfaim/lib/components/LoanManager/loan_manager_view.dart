@@ -24,11 +24,10 @@ class LoanManagerView extends StatelessWidget {
           new Row(mainAxisAlignment: MainAxisAlignment.start, children: [
             new Container(
               height: 40.0,
-              padding:
-                  const EdgeInsets.only(top: 10.0, right: 10.0, bottom: 10.0),
               child: new Row(children: [
                 new Container(
-                    width: 48.0,
+                    margin: EdgeInsets.only(right: 10),
+                    width: 20.0,
                     height: 48.0,
                     child: new Icon(
                       FontAwesomeIcons.piggyBank,
@@ -41,13 +40,24 @@ class LoanManagerView extends StatelessWidget {
               ]),
             )
           ]),
-          new Column(children: generateLoanList())
+          new Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: generateLoanList())
         ]));
   }
 
-  Iterable<Widget> generateLoanList() => this
-      .loans
-      .map((l) => new LoanItem(
-          loan: l, capital: this.capital, refundLoan: this.refundLoan))
-      .toList();
+  Iterable<Widget> generateLoanList() {
+    if (this.loans.isNotEmpty) {
+      return this
+          .loans
+          .map((l) => new LoanItem(
+              loan: l, capital: this.capital, refundLoan: this.refundLoan))
+          .toList();
+    } else {
+      return [
+        new Text("Vous n'avez pas de prêt en cours ;-)",
+            textAlign: TextAlign.left)
+      ];
+    }
+  }
 }

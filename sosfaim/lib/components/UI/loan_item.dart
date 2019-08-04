@@ -23,10 +23,12 @@ class LoanItem extends StatelessWidget {
         this.capital >= this.loan.leftLoan ? () => onRefund(this.loan) : null;
 
     int amountLeft = this.loan.leftLoan;
+    int interests =
+        (this.loan.leftLoan / 100.0 * this.loan.weeklyInterests).toInt();
 
     return new Container(
         height: 40.0,
-        padding: const EdgeInsets.only(top: 10.0, right: 10.0, bottom: 10.0),
+        padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
         child: new Row(children: <Widget>[
           new Container(
               width: 48.0,
@@ -49,16 +51,28 @@ class LoanItem extends StatelessWidget {
                 child: new Align(
                     alignment: Alignment.center,
                     child: new Text(
-                      '$amountLeft €',
+                      '$amountLeft€ / intérêts : $interests€',
                       style: new TextStyle(
                           fontWeight: FontWeight.bold, color: Colors.white),
                     )))
           ])),
-          new FlatButton(
-            disabledColor: Colors.grey,
-            child: new Text("Rembourser"),
-            onPressed: refundButtonPressed,
-          )
+          new Container(
+              margin: EdgeInsets.only(left: 10),
+              child: new RaisedButton(
+                child: new Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    new Text('Rembourser : -1'),
+                    new Image.asset(
+                      'assets/images/energy_icon.png',
+                      width: 20.0,
+                      height: 20.0,
+                      fit: BoxFit.contain,
+                    ),
+                  ],
+                ),
+                onPressed: refundButtonPressed,
+              ))
         ]));
   }
 }
