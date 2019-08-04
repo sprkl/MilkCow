@@ -83,7 +83,7 @@ class MilkSellManagerView extends StatelessWidget {
                     ]))
                   ])),
               new Visibility(
-                  visible: canSellMilk,
+                  visible: canSellMilk && milkLitters > 0,
                   child: new RaisedButton(
                       elevation: 2,
                       child: new Row(
@@ -112,12 +112,12 @@ class MilkSellManagerView extends StatelessWidget {
                     new Text("Prix de vente :"),
                     new Expanded(
                         child: new Slider(
-                            min: 0.1,
-                            divisions: 50,
-                            label: "Prix : $selectedLitterPriceDisplay",
-                            max: 5,
-                            value: selectedLitterPrice,
-                            onChanged: onSelectedLitterPriceChanged))
+                          min: 0.1,
+                          divisions: 200,
+                          label: "Prix : $selectedLitterPriceDisplay €/L",
+                          max: 2,
+                          value: selectedLitterPrice,
+                          onChanged: onSelectedLitterPriceChanged))
                   ])),
             ]));
   }

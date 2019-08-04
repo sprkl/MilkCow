@@ -24,6 +24,7 @@ class AbrasionModuleView extends StatelessWidget {
     return new Container(
       padding: const EdgeInsets.all(20.0),
       child: new Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget> [
           new Container(
             alignment: Alignment.centerLeft,
@@ -37,7 +38,7 @@ class AbrasionModuleView extends StatelessWidget {
           ),
           new Container(
             alignment: Alignment.centerLeft,
-            padding: const EdgeInsets.only(top: 10.0),
+            padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
             child: new Text(
               'L\'état du matériel influence votre production de lait. Plus votre matériel est usé, moins vous aurez du lait de votre bétail.',
               style: new TextStyle(
@@ -46,6 +47,7 @@ class AbrasionModuleView extends StatelessWidget {
               )
             ),
           ),
+          new Text('Influence : -$abrasion% de lait récolté par traite'),
           new Container(
             height: 40.0,
             padding: const EdgeInsets.only(top: 10.0, right: 10.0, bottom: 10.0),

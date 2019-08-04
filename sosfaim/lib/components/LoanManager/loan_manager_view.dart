@@ -30,7 +30,9 @@ class LoanManagerView extends StatelessWidget {
         title: "Capital / Prêt",
         subtitle:
             "Gérez intelligement votre business pour investir dans la production de lait et augmenter votre capital. Si vous manquez d'argent, vous pouvez faire un prêt !",
-        child: new Column(children: [
+        child: new Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
           new Row(mainAxisAlignment: MainAxisAlignment.start, children: [
             new Container(
               height: 40.0,
@@ -77,7 +79,9 @@ class LoanManagerView extends StatelessWidget {
       return Text("Vous avez déjà contracté un prêt aujourd'hui.");
     } else {
       bool canContractLoan = this.selectedLoanAmount > 0;
-      return new Column(children: <Widget>[
+      return new Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
         new Container(
             height: 40.0,
             padding: const EdgeInsets.only(top: 10.0),

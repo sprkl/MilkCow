@@ -42,6 +42,7 @@ class CowManagerView extends StatelessWidget {
     return new Container(
       padding: const EdgeInsets.all(20.0),
       child: new Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget> [
           new Container(
             alignment: Alignment.centerLeft,
@@ -106,7 +107,7 @@ class CowManagerView extends StatelessWidget {
             )
           ),
           new Visibility(
-            visible: canMilkCows,
+            visible: canMilkCows && totalCowNumber > 0,
             child: new RaisedButton(
               elevation: 2,
               child: new Row (
