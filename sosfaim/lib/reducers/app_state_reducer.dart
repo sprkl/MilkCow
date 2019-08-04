@@ -80,7 +80,7 @@ AppState _milkCows(AppState state, MilkCows action) {
       backgroundColor: Theme.of(action.context).colorScheme.primary,
       content: Text(
           'Votre stock de lait est plein. Penser à le vendre !'),
-      duration: new Duration(seconds: 10),
+      duration: new Duration(seconds: 6),
     );
     Scaffold.of(action.context).showSnackBar(snackBar);
   }
@@ -89,7 +89,7 @@ AppState _milkCows(AppState state, MilkCows action) {
       backgroundColor: Theme.of(action.context).colorScheme.primary,
       content: Text(
           'Vous avez récolté $milkGain litres !'),
-      duration: new Duration(seconds: 10),
+      duration: new Duration(seconds: 6),
     );
     Scaffold.of(action.context).showSnackBar(snackBar);
   }
@@ -125,7 +125,7 @@ AppState _sellMilk(AppState state, SellMilk action) {
     backgroundColor: Theme.of(action.context).colorScheme.primary,
     content: Text(
         'Vous avez vendu $soldMilkLitters litres pour un montant de $amount€ !'),
-    duration: new Duration(seconds: 10),
+    duration: new Duration(seconds: 6),
   );
   Scaffold.of(action.context).showSnackBar(snackBar);
 
