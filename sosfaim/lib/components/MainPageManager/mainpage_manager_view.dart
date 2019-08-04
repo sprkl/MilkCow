@@ -34,7 +34,6 @@ class MainPageManagerView extends StatelessWidget{
                 new MilkSellManager(),
                 new Divider(height: 1, color: Theme.of(context).primaryColor,),
                 new AbrasionModule(),
-                new Divider(height: 1, color: Theme.of(context).primaryColor,),
               ],
             ),
           )

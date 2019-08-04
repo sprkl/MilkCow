@@ -6,6 +6,7 @@ import 'package:sosfaim/models/app_state.dart';
 
 class CowManagerViewModel {
 
+  final int energyCount;
   final int capital;
   final int totalCowNumber;
   final double selectedCowNumber;
@@ -23,6 +24,7 @@ class CowManagerViewModel {
     final milkCows = () => store.dispatch(MilkCows());
 
     return CowManagerViewModel(
+      energyCount: store.state.energyCount,
       capital: store.state.capital,
       totalCowNumber: store.state.totalCowNumber,
       selectedCowNumber: store.state.selectedCowNumber,
@@ -34,6 +36,7 @@ class CowManagerViewModel {
   }
 
   CowManagerViewModel({
+    @required this.energyCount,
     @required this.capital,
     @required this.totalCowNumber,
     @required this.selectedCowNumber,
@@ -41,5 +44,6 @@ class CowManagerViewModel {
     @required this.buyCow,
     @required this.sellCow,
     @required this.milkCows,
-    @required this.canMilkCows});
+    @required this.canMilkCows,
+  });
 }

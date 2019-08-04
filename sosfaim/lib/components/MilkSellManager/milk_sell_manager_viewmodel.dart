@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:redux/redux.dart';
 import 'package:sosfaim/actions/sell_milk_manager_actions.dart';
 import 'package:sosfaim/models/app_state.dart';
-import 'package:sosfaim/actions/actions.dart';
 
 class MilkSellManagerViewModel{
 
+  final int energyCount;
   final int milkLitters;
   final bool canSellMilk;
   final double selectedLitterPrice;
@@ -18,6 +18,7 @@ class MilkSellManagerViewModel{
     final onSelectedLitterPriceChanged = (selectedLitterPrice) => store.dispatch(UpdateSelectedLitterPrice(selectedLitterPrice));
 
     return MilkSellManagerViewModel(
+      energyCount: store.state.energyCount,
       milkLitters: store.state.milkLitters,
       canSellMilk: store.state.canSellMilk,
       selectedLitterPrice: store.state.selectedLitterPrice,
@@ -26,6 +27,7 @@ class MilkSellManagerViewModel{
   }
 
   MilkSellManagerViewModel({
+    @required this.energyCount,
     @required this.milkLitters,
     @required this.canSellMilk,
     @required this.selectedLitterPrice,

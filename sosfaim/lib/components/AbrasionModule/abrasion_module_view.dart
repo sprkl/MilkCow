@@ -2,12 +2,16 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class AbrasionModuleView extends StatelessWidget {
+
+  final int energyCount;
   final int abrasion;
   final Function repairMaterial;
 
   AbrasionModuleView({
+    @required this.energyCount,
     @required this.abrasion, 
-    @required this.repairMaterial});
+    @required this.repairMaterial
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +22,7 @@ class AbrasionModuleView extends StatelessWidget {
     var repairButtonText = 'Réparer: -$repairCost €';
 
     return new Container(
-      padding: const EdgeInsets.only(left: 20.0, top: 10.0, right: 20.0, bottom: 10.0),
+      padding: const EdgeInsets.all(20.0),
       child: new Column(
         children: <Widget> [
           new Container(
@@ -87,10 +91,19 @@ class AbrasionModuleView extends StatelessWidget {
             visible: canShowRepairButton,
             child: new RaisedButton(
               elevation: 2,
-              child: Text(repairButtonText),
-              onPressed: () {
-                repairMaterial(repairCost);
-              }
+              child: new Row (
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  new Text(repairButtonText + ' / -3'),
+                  new Image.asset(
+                    'assets/images/energy_icon.png',
+                    width: 20.0,
+                    height: 20.0,
+                    fit: BoxFit.contain,
+                  ),
+                ], 
+              ),
+              onPressed: energyCount >= 3 ? () => repairMaterial(repairCost) : null
             )
           )
         ]

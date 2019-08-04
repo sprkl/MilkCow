@@ -52,7 +52,7 @@ class EnergyManagerView extends StatelessWidget {
                       new Container(
                         height: 40.0,
                         child: new LinearProgressIndicator(
-                          value: energyCount.toDouble(),
+                          value: energyCount.toDouble() * 0.2,
                           backgroundColor: Colors.grey,
                           valueColor: AlwaysStoppedAnimation<Color>(Colors.amber)
                         )
@@ -62,7 +62,7 @@ class EnergyManagerView extends StatelessWidget {
                         child: new Align(
                           alignment: Alignment.center,
                           child: new Text(
-                            '$energyCount/3',
+                            '$energyCount/5',
                             style: new TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.white

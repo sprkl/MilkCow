@@ -24,6 +24,7 @@ class AbrasionModule extends StatelessWidget implements IModule {
     },
     builder: (context, vm) {
       return AbrasionModuleView(
+        energyCount: vm.energyCount,
         abrasion: vm.abrasion,
         repairMaterial: vm.repairMaterial
       );

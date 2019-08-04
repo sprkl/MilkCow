@@ -16,6 +16,7 @@ class MilkSellManager extends StatelessWidget{
       },
       builder: (context, vm) {
         return MilkSellManagerView(
+          energyCount: vm.energyCount,
           canSellMilk: vm.canSellMilk,
           milkLitters: vm.milkLitters,
           selectedLitterPrice: vm.selectedLitterPrice,

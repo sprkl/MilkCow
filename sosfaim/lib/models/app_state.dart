@@ -36,7 +36,7 @@ class AppState {
       this.dayCount = 1,
       this.capital = 10000,
       this.milkPrice = 1,
-      this.energyCount = 3,
+      this.energyCount = 5,
       this.totalCowNumber = 10,
       this.selectedCowNumber = 0,
       this.canMilkCows = true,

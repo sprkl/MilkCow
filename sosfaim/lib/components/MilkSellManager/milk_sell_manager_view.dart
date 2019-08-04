@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class MilkSellManagerView extends StatelessWidget{
 
+  final int energyCount;
   final int milkLitters;
   final bool canSellMilk;
   final double selectedLitterPrice;
@@ -11,6 +12,7 @@ class MilkSellManagerView extends StatelessWidget{
   static const int maxLitters = 1000;
 
   MilkSellManagerView({
+    @required this.energyCount,
     @required this.milkLitters,
     @required this.canSellMilk,
     @required this.selectedLitterPrice,
@@ -90,8 +92,19 @@ class MilkSellManagerView extends StatelessWidget{
             visible: canSellMilk,
             child: new RaisedButton(
               elevation: 2,
-              child: Text('Vendre: todo'),
-              onPressed: sellMilk
+              child: new Row (
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  new Text('Vendre votre lait: -2'),
+                  new Image.asset(
+                    'assets/images/energy_icon.png',
+                    width: 20.0,
+                    height: 20.0,
+                    fit: BoxFit.contain,
+                  ),
+                ], 
+              ),
+              onPressed: energyCount >= 2 ? sellMilk : null
             )
           ),
            new Visibility(

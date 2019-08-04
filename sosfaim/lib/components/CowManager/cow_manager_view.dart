@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class CowManagerView extends StatelessWidget {
   
+  final int energyCount;
   final int capital;
   final int totalCowNumber;
   final double selectedCowNumber;
@@ -17,6 +18,7 @@ class CowManagerView extends StatelessWidget {
   final int maxCowCount = 100;
 
   CowManagerView({
+    @required this.energyCount,
     @required this.capital,
     @required this.totalCowNumber,
     @required this.selectedCowNumber, 
@@ -24,7 +26,8 @@ class CowManagerView extends StatelessWidget {
     @required this.buyCow,
     @required this.sellCow,
     @required this.milkCows,
-    @required this.canMilkCows});
+    @required this.canMilkCows
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -106,8 +109,19 @@ class CowManagerView extends StatelessWidget {
             visible: canMilkCows,
             child: new RaisedButton(
               elevation: 2,
-              child: Text('Traire: todo'),
-              onPressed: milkCows
+              child: new Row (
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  new Text('Traire votre bétail: -2'),
+                  new Image.asset(
+                    'assets/images/energy_icon.png',
+                    width: 20.0,
+                    height: 20.0,
+                    fit: BoxFit.contain,
+                  ),
+                ], 
+              ),
+              onPressed: energyCount >= 2 ? milkCows : null
             )
           ),
            new Visibility(

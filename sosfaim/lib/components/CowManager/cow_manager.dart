@@ -24,6 +24,7 @@ class CowManager extends StatelessWidget implements IModule {
         },
         builder: (context, vm) {
           return CowManagerView(
+            energyCount: vm.energyCount,
             capital: vm.capital,
             totalCowNumber: vm.totalCowNumber,
             selectedCowNumber: vm.selectedCowNumber, 
