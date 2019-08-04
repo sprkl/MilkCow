@@ -27,7 +27,7 @@ class LoanManagerView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new ModuleLayout(
-        title: "Capital / Prêt",
+        title: "Capital",
         subtitle:
             "Gérez intelligement votre business pour investir dans la production de lait et augmenter votre capital. Si vous manquez d'argent, vous pouvez faire un prêt !",
         child: new Column(
@@ -52,6 +52,12 @@ class LoanManagerView extends StatelessWidget {
               ]),
             )
           ]),
+          new Padding(
+            padding: EdgeInsets.only(top: 10.0),
+            child: new Text('Prêts',
+              style:
+                new TextStyle(fontWeight: FontWeight.bold, fontSize: 18))
+          ),
           new Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: generateLoanList()),
@@ -102,7 +108,7 @@ class LoanManagerView extends StatelessWidget {
                 child: new Row(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    new Text('Emprunter $selectedLoanAmount: -1'),
+                    new Text('Emprunter: -$selectedLoanAmount€ / -1'),
                     new Image.asset(
                       'assets/images/energy_icon.png',
                       width: 20.0,

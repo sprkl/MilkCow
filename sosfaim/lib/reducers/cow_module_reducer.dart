@@ -1,6 +1,3 @@
-// We create the State reducer by combining many smaller reducers into one!
-import 'dart:math';
-
 import 'package:redux/redux.dart';
 import 'package:sosfaim/actions/actions.dart';
 import 'package:sosfaim/models/app_state.dart';

@@ -20,16 +20,20 @@ class AppHeaderView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Container(
-      padding: EdgeInsets.only(bottom: 10.0),
+      padding: EdgeInsets.only(bottom: 20.0),
       color: Theme.of(context).backgroundColor.withAlpha(150),
       child: new Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           new EnergyManager(),
-          new RaisedButton(
+          new Padding(
+            padding : EdgeInsets.only(left: 20.0, right:20),
+            child: new RaisedButton(
               elevation: 2,
               child: new Text("Passer au jour suivant"),
               onPressed: () => onDayCountValueChanged(context),
             )
+          )
         ],
       )
     );

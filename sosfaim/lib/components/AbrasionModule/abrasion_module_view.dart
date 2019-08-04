@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 class AbrasionModuleView extends StatelessWidget {
 
   final int energyCount;
+  final int capital;
   final int abrasion;
   final Function repairMaterial;
 
   AbrasionModuleView({
     @required this.energyCount,
+    @required this.capital,
     @required this.abrasion, 
     @required this.repairMaterial
   });
@@ -105,7 +107,7 @@ class AbrasionModuleView extends StatelessWidget {
                   ),
                 ], 
               ),
-              onPressed: energyCount >= 3 ? () => repairMaterial(repairCost) : null
+              onPressed: capital > repairCost && energyCount >= 3 ? () => repairMaterial(repairCost) : null
             )
           )
         ]

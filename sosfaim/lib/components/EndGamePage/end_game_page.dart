@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sosfaim/components/MainPageManager/mainpage_manager_viewmodel.dart';
-import 'package:sosfaim/components/MainPageManager/mainpage_manager_view.dart';
+
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 import 'package:sosfaim/models/app_state.dart';

@@ -31,9 +31,33 @@ AppState _incrementDay(AppState state, IncrementDay action) {
 
   if (day >= 15 && action.context != null) {
     Navigator.push(
-        action.context, 
-        MaterialPageRoute(builder: (context) => EndGamePage()));
+        action.context, MaterialPageRoute(builder: (context) => EndGamePage()));
   }
+
+  var newMilkPrice = 0.0;
+  if (state.dayCount == 4) {
+    newMilkPrice = 0.60;
+
+    final snackBar = SnackBar(
+      backgroundColor: Theme.of(action.context).colorScheme.primary,
+      content: Text(
+          'La surproduction de lait en Europe entraîne une chute importante du prix de vente.'),
+      duration: new Duration(seconds: 4),
+    );
+    Scaffold.of(action.context).showSnackBar(snackBar);
+  } else if (state.dayCount == 9) {
+    newMilkPrice = 0.20;
+
+    final snackBar = SnackBar(
+      backgroundColor: Theme.of(action.context).colorScheme.primary,
+      content: Text(
+          'Suite au vote d\'une loi européene, le prix du lait est fixé à 0.20 €/L.'),
+      duration: new Duration(seconds: 4),
+    );
+    Scaffold.of(action.context).showSnackBar(snackBar);
+  }
+
+  var milkPrice = newMilkPrice > 0 ? newMilkPrice : state.milkPrice;
 
   return state.copyWith(
       dayCount: day,
@@ -41,6 +65,7 @@ AppState _incrementDay(AppState state, IncrementDay action) {
       previousEnergyCount: state.energyCount,
       canMilkCows: true,
       canSellMilk: true,
+      milkPrice: milkPrice,
       abrasion: state.abrasion);
 }
 
@@ -80,8 +105,26 @@ AppState _sellCow(AppState state, SellCow action) {
 }
 
 AppState _milkCows(AppState state, MilkCows action) {
-  var milkLitters = state.milkLitters +
-      state.totalCowNumber * (30 * ((100 - state.abrasion) / 100.0));
+  var milkGain =
+      (state.totalCowNumber * (30 * ((100 - state.abrasion) / 100.0))).toInt();
+  var milkLitters = state.milkLitters + milkGain;
+  if (milkLitters > 1000) {
+    milkLitters = 1000;
+
+    final snackBar = SnackBar(
+      backgroundColor: Theme.of(action.context).colorScheme.primary,
+      content: Text('Votre stock de lait est plein. Pensez à le vendre !'),
+      duration: new Duration(seconds: 4),
+    );
+    Scaffold.of(action.context).showSnackBar(snackBar);
+  } else {
+    final snackBar = SnackBar(
+      backgroundColor: Theme.of(action.context).colorScheme.primary,
+      content: Text('Vous avez récolté $milkGain litres !'),
+      duration: new Duration(seconds: 4),
+    );
+    Scaffold.of(action.context).showSnackBar(snackBar);
+  }
 
   return state.copyWith(
       milkLitters: milkLitters.toInt(),
@@ -114,7 +157,7 @@ AppState _sellMilk(AppState state, SellMilk action) {
     backgroundColor: Theme.of(action.context).colorScheme.primary,
     content: Text(
         'Vous avez vendu $soldMilkLitters litres pour un montant de $amount€ !'),
-    duration: new Duration(seconds: 10),
+    duration: new Duration(seconds: 4),
   );
   Scaffold.of(action.context).showSnackBar(snackBar);
 

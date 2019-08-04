@@ -75,7 +75,7 @@ class MilkSellManagerView extends StatelessWidget {
                           child: new Align(
                               alignment: Alignment.center,
                               child: new Text(
-                                '$milkLitters/$maxLitters',
+                                '$milkLitters L/$maxLitters L',
                                 style: new TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white),
@@ -102,12 +102,11 @@ class MilkSellManagerView extends StatelessWidget {
               new Visibility(
                   visible: !canSellMilk,
                   child: new Padding(
-                      padding: const EdgeInsets.all(10.0),
+                      padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
                       child: new Text(
                           'Vous avez déjà vendu votre lait pour aujourd\'hui !'))),
               new Container(
                   height: 40.0,
-                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                   child: new Row(children: <Widget>[
                     new Text("Prix de vente :"),
                     new Expanded(

@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class UpdateSelectedCowNumber {
   final double selectedCowNumber;
   
@@ -18,4 +20,8 @@ class SellCow {
   SellCow(this.cowCount, this.totalCost);
 }
 
-class MilkCows {}
+class MilkCows {
+  final BuildContext context;
+
+  MilkCows(this.context);
+}
