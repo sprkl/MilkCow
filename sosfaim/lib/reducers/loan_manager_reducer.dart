@@ -35,6 +35,7 @@ AppState _refundLoan(AppState state, RefundLoan action) {
   return state.copyWith(
       loans: loans,
       energyCount: state.energyCount - 1,
+      previousEnergyCount : state.energyCount,
       capital: state.capital - action.loan.leftLoan);
 }
 

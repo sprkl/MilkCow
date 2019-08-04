@@ -14,6 +14,7 @@ class AppState {
 
   // Energy Manager
   final int energyCount;
+  final int previousEnergyCount;
 
   // Cow Manager Module
   final int totalCowNumber;
@@ -42,6 +43,7 @@ class AppState {
       this.capital = 10000,
       this.milkPrice = 1,
       this.energyCount = 5,
+      this.previousEnergyCount = 0,
       this.totalCowNumber = 10,
       this.selectedCowNumber = 0,
       this.canMilkCows = true,
@@ -80,7 +82,8 @@ class AppState {
       int selectedLoanAmount,
       bool loanContracted,
       int lastLoandId,
-      double sellingFactor}) {
+      double sellingFactor, 
+      int previousEnergyCount}) {
     return AppState(
         isLoading: isLoading ?? this.isLoading,
         modules: modules ?? this.modules,
@@ -99,6 +102,7 @@ class AppState {
         abrasion: abrasion ?? this.abrasion,
         selectedLoanAmount: selectedLoanAmount ?? this.selectedLoanAmount,
         loanContracted: loanContracted ?? this.loanContracted,
-        lastLoanId: lastLoandId ?? this.lastLoanId);
+        lastLoanId: lastLoandId ?? this.lastLoanId,
+        previousEnergyCount : previousEnergyCount ?? this.previousEnergyCount);
   }
 }

@@ -24,7 +24,8 @@ class EnergyManager extends StatelessWidget implements IModule {
       },
       builder: (context, vm) {
         return EnergyManagerView(
-          energyCount: vm.energyCount
+          energyCount: vm.energyCount,
+          previousEnergyCount: vm.previousEnergyCount,
         );
       }
     );

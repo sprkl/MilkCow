@@ -1,12 +1,14 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:sosfaim/components/UI/animated_progress_indicator.dart';
 
 class EnergyManagerView extends StatelessWidget {
   
   final int energyCount;
+  final int previousEnergyCount;
 
   EnergyManagerView({
-    @required this.energyCount});
+    @required this.energyCount, @required this.previousEnergyCount});
 
   @override
   Widget build(BuildContext context) {
@@ -51,10 +53,11 @@ class EnergyManagerView extends StatelessWidget {
                     children: <Widget> [
                       new Container(
                         height: 40.0,
-                        child: new LinearProgressIndicator(
-                          value: energyCount.toDouble() * 0.2,
+                        child:  new AnimatedProgressIndicator(
+                          from : previousEnergyCount.toDouble() * 0.2,
+                          to: energyCount.toDouble() * 0.2,
                           backgroundColor: Colors.grey,
-                          valueColor: AlwaysStoppedAnimation<Color>(Colors.amber)
+                          valueColor: AlwaysStoppedAnimation<Color>(Colors.amber),
                         )
                       ),
                       new Container(

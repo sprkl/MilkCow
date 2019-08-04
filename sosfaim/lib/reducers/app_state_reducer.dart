@@ -29,6 +29,7 @@ AppState _incrementDay(AppState state, IncrementDay action) {
   return state.copyWith(
       dayCount: state.dayCount + 1,
       energyCount: min(state.energyCount + 3, 5),
+      previousEnergyCount: state.energyCount,
       canMilkCows: true,
       canSellMilk: true,
       abrasion: state.abrasion);
@@ -51,7 +52,8 @@ AppState _repairMaterial(AppState state, RepairMaterial action) {
   return state.copyWith(
       capital: state.capital - action.repairCost,
       abrasion: 0,
-      energyCount: state.energyCount - 3);
+      energyCount: state.energyCount - 3,
+      previousEnergyCount: state.energyCount);
 }
 
 AppState _buyCow(AppState state, BuyCow action) {
@@ -75,7 +77,8 @@ AppState _milkCows(AppState state, MilkCows action) {
   return state.copyWith(
       milkLitters: milkLitters.toInt(),
       canMilkCows: false,
-      energyCount: state.energyCount - 2);
+      energyCount: state.energyCount - 2,
+      previousEnergyCount: state.energyCount);
 }
 
 AppState _updateSelectedLitterPrice(
@@ -100,15 +103,16 @@ AppState _sellMilk(AppState state, SellMilk action) {
 
   final snackBar = SnackBar(
     backgroundColor: Theme.of(action.context).colorScheme.primary,
-    content: Text('Vous avez vendu $soldMilkLitters litres pour un montant de $amount€ !'),
+    content: Text(
+        'Vous avez vendu $soldMilkLitters litres pour un montant de $amount€ !'),
     duration: new Duration(seconds: 10),
   );
   Scaffold.of(action.context).showSnackBar(snackBar);
 
   return state.copyWith(
-    capital: capital.toInt(),
-    milkLitters: state.milkLitters - soldMilkLitters,
-    canSellMilk: false,
-    energyCount: state.energyCount - 2
-  );
+      capital: capital.toInt(),
+      milkLitters: state.milkLitters - soldMilkLitters,
+      canSellMilk: false,
+      energyCount: state.energyCount - 2,
+      previousEnergyCount: state.energyCount);
 }
