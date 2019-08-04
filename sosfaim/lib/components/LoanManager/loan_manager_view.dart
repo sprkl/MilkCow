@@ -8,11 +8,21 @@ class LoanManagerView extends StatelessWidget {
   final List<Loan> loans;
   final int capital;
   final Function refundLoan;
+  final int selectedLoanAmount;
+  final Function onLoanAmountChanged;
+  final Function contractLoan;
+  final bool loanContracted;
+  final int energyCount;
 
   LoanManagerView(
       {@required this.loans,
       @required this.capital,
-      @required this.refundLoan});
+      @required this.refundLoan,
+      @required this.selectedLoanAmount,
+      @required this.onLoanAmountChanged,
+      @required this.contractLoan,
+      @required this.loanContracted,
+      @required this.energyCount});
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +52,8 @@ class LoanManagerView extends StatelessWidget {
           ]),
           new Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: generateLoanList())
+              children: generateLoanList()),
+          buildLoanContractor(),
         ]));
   }
 
@@ -58,6 +69,46 @@ class LoanManagerView extends StatelessWidget {
         new Text("Vous n'avez pas de prêt en cours ;-)",
             textAlign: TextAlign.left)
       ];
+    }
+  }
+
+  Widget buildLoanContractor() {
+    if (this.loanContracted) {
+      return Text("Vous avez déjà contracté un prêt aujourd'hui.");
+    } else {
+      bool canContractLoan = this.selectedLoanAmount > 0;
+      return new Column(children: <Widget>[
+        new Container(
+            height: 40.0,
+            padding: const EdgeInsets.only(top: 10.0),
+            child: new Row(children: <Widget>[
+              new Text("Emprunter :"),
+              new Expanded(
+                  child: new Slider(
+                      min: 0,
+                      divisions: 5000,
+                      max: 100000,
+                      value: selectedLoanAmount.toDouble(),
+                      onChanged: onLoanAmountChanged))
+            ])),
+        new Visibility(
+            visible: canContractLoan,
+            child: new RaisedButton(
+                elevation: 2,
+                child: new Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    new Text('Emprunter $selectedLoanAmount: -1'),
+                    new Image.asset(
+                      'assets/images/energy_icon.png',
+                      width: 20.0,
+                      height: 20.0,
+                      fit: BoxFit.contain,
+                    ),
+                  ],
+                ),
+                onPressed: energyCount > 1 ? this.contractLoan:null))
+      ]);
     }
   }
 }

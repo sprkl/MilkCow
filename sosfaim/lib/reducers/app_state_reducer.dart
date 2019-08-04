@@ -27,7 +27,7 @@ AppState _incrementDay(AppState state, IncrementDay action){
 
   return state.copyWith(
     dayCount : state.dayCount + 1,
-    energyCount: 5,
+    energyCount: min(state.energyCount + 3, 5),
     canMilkCows: true,
     canSellMilk: true,
     abrasion: state.abrasion
@@ -81,13 +81,15 @@ AppState _milkCows(AppState state, MilkCows action) {
 
 AppState _updateSelectedLitterPrice(AppState state, UpdateSelectedLitterPrice action) {
   return state.copyWith(
-    selectedLitterPrice: action.selectedLitterPrice
+    selectedLitterPrice: action.selectedLitterPrice,
+    sellingFactor : min(pow(state.milkPrice/state.selectedLitterPrice, 2), 1.0)
   );
 }
 
 AppState _sellMilk(AppState state, SellMilk action) {
 
-  var soldMilkLitters = Random().nextInt(state.milkLitters);
+ 
+   var soldMilkLitters = Random().nextInt((state.milkLitters * state.sellingFactor).toInt());
   var capital = state.capital + state.selectedLitterPrice * soldMilkLitters;
 
   return state.copyWith(

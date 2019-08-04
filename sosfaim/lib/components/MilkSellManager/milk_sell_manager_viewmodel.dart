@@ -11,6 +11,8 @@ class MilkSellManagerViewModel{
   final double selectedLitterPrice;
   final Function sellMilk;
   final Function onSelectedLitterPriceChanged;
+  final double sellingFactor;
+  final double milkPrice;
 
   factory MilkSellManagerViewModel.from(Store<AppState> store){
 
@@ -23,7 +25,9 @@ class MilkSellManagerViewModel{
       canSellMilk: store.state.canSellMilk,
       selectedLitterPrice: store.state.selectedLitterPrice,
       sellMilk: sellMilk, 
-      onSelectedLitterPriceChanged: onSelectedLitterPriceChanged);
+      onSelectedLitterPriceChanged: onSelectedLitterPriceChanged,
+      sellingFactor : store.state.sellingFactor,
+      milkPrice : store.state.milkPrice);
   }
 
   MilkSellManagerViewModel({
@@ -32,6 +36,8 @@ class MilkSellManagerViewModel{
     @required this.canSellMilk,
     @required this.selectedLitterPrice,
     @required this.sellMilk,
-    @required this.onSelectedLitterPriceChanged
+    @required this.onSelectedLitterPriceChanged,
+    @required this.sellingFactor,
+    @required this.milkPrice
   });
 }

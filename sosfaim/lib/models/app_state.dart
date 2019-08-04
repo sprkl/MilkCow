@@ -24,6 +24,7 @@ class AppState {
   final int milkLitters;
   final bool canSellMilk;
   final double selectedLitterPrice;
+  final double sellingFactor;
 
   // Abrasion Module
   final int abrasion;
@@ -31,6 +32,8 @@ class AppState {
   // Loan Manager
   final List<Loan> loans;
   final int lastLoanId;
+  final int selectedLoanAmount;
+  final bool loanContracted;
 
   AppState(
       {this.isLoading = false,
@@ -54,7 +57,10 @@ class AppState {
       this.milkLitters = 0,
       this.canSellMilk = true,
       this.selectedLitterPrice = 1,
-      this.abrasion = 20});
+      this.sellingFactor = 1,
+      this.abrasion = 20,
+      this.selectedLoanAmount = 0,
+      this.loanContracted = false});
 
   AppState copyWith(
       {bool isLoading,
@@ -70,7 +76,11 @@ class AppState {
       int milkLitters,
       bool canSellMilk,
       double selectedLitterPrice,
-      int abrasion}) {
+      int abrasion,
+      int selectedLoanAmount,
+      bool loanContracted,
+      int lastLoandId,
+      double sellingFactor}) {
     return AppState(
         isLoading: isLoading ?? this.isLoading,
         modules: modules ?? this.modules,
@@ -85,6 +95,10 @@ class AppState {
         milkLitters: milkLitters ?? this.milkLitters,
         canSellMilk: canSellMilk ?? this.canSellMilk,
         selectedLitterPrice: selectedLitterPrice ?? this.selectedLitterPrice,
-        abrasion: abrasion ?? this.abrasion);
+        sellingFactor : sellingFactor ?? this.sellingFactor,
+        abrasion: abrasion ?? this.abrasion,
+        selectedLoanAmount: selectedLoanAmount ?? this.selectedLoanAmount,
+        loanContracted: loanContracted ?? this.loanContracted,
+        lastLoanId: lastLoandId ?? this.lastLoanId);
   }
 }
