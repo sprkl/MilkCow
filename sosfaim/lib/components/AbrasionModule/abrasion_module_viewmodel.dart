@@ -6,6 +6,7 @@ import 'package:sosfaim/models/app_state.dart';
 class AbrasionModuleViewModel {
 
   final int energyCount;
+  final int capital;
   final int abrasion;
   final Function repairMaterial;
 
@@ -15,12 +16,14 @@ class AbrasionModuleViewModel {
 
     return AbrasionModuleViewModel(
       energyCount: store.state.energyCount,
+      capital: store.state.capital,
       abrasion: store.state.abrasion,
       repairMaterial: repairMaterial);
   }
 
   AbrasionModuleViewModel({
     @required this.energyCount,
+    @required this.capital,
     @required this.abrasion,
     @required this.repairMaterial});
 }

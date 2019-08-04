@@ -19,8 +19,7 @@ AppState appReducer(AppState state, action) {
     TypedReducer<AppState, BuyCow>(_buyCow),
     TypedReducer<AppState, SellCow>(_sellCow),
     TypedReducer<AppState, MilkCows>(_milkCows),
-    TypedReducer<AppState, UpdateSelectedLitterPrice>(
-        _updateSelectedLitterPrice),
+    TypedReducer<AppState, UpdateSelectedLitterPrice>(_updateSelectedLitterPrice),
     TypedReducer<AppState, SellMilk>(_sellMilk)
   ])(state, action);
 }
@@ -71,8 +70,29 @@ AppState _sellCow(AppState state, SellCow action) {
 }
 
 AppState _milkCows(AppState state, MilkCows action) {
-  var milkLitters = state.milkLitters +
-      state.totalCowNumber * (30 * ((100 - state.abrasion) / 100.0));
+
+  var milkGain = (state.totalCowNumber * (30 * ((100 - state.abrasion) / 100.0))).toInt();
+  var milkLitters = state.milkLitters + milkGain;
+  if(milkLitters > 1000) {
+    milkLitters = 1000;
+
+    final snackBar = SnackBar(
+      backgroundColor: Theme.of(action.context).colorScheme.primary,
+      content: Text(
+          'Votre stock de lait est plein. Penser à le vendre !'),
+      duration: new Duration(seconds: 10),
+    );
+    Scaffold.of(action.context).showSnackBar(snackBar);
+  }
+  else {
+    final snackBar = SnackBar(
+      backgroundColor: Theme.of(action.context).colorScheme.primary,
+      content: Text(
+          'Vous avez récolté $milkGain litres !'),
+      duration: new Duration(seconds: 10),
+    );
+    Scaffold.of(action.context).showSnackBar(snackBar);
+  }
 
   return state.copyWith(
       milkLitters: milkLitters.toInt(),
@@ -96,8 +116,8 @@ AppState _sellMilk(AppState state, SellMilk action) {
   }
 
   var soldMilkLitters =
-      Random().nextInt((state.milkLitters * state.sellingFactor).toInt());
-  int amount = (state.selectedLitterPrice * soldMilkLitters).toInt();
+    Random().nextInt((state.milkLitters * state.sellingFactor).toInt());
+    int amount = (state.selectedLitterPrice * soldMilkLitters).toInt();
 
   var capital = state.capital + amount;
 

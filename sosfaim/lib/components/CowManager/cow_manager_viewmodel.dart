@@ -21,7 +21,7 @@ class CowManagerViewModel {
     final onCowNumberValuedChanged = (selectedCowNumber) => store.dispatch(UpdateSelectedCowNumber(selectedCowNumber));
     final buyCow = (cowCount, price) => store.dispatch(BuyCow(cowCount, price));
     final sellCow = (cowCount, price) => store.dispatch(SellCow(cowCount, price));
-    final milkCows = () => store.dispatch(MilkCows());
+    final milkCows = (BuildContext context) => store.dispatch(MilkCows(context));
 
     return CowManagerViewModel(
       energyCount: store.state.energyCount,

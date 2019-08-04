@@ -122,7 +122,7 @@ class CowManagerView extends StatelessWidget {
                   ),
                 ], 
               ),
-              onPressed: energyCount >= 2 ? milkCows : null
+              onPressed: energyCount >= 2 ? () => milkCows(context) : null
             )
           ),
            new Visibility(

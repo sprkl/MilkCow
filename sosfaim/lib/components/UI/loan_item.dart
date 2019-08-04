@@ -30,14 +30,7 @@ class LoanItem extends StatelessWidget {
         height: 40.0,
         padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
         child: new Row(children: <Widget>[
-          new Container(
-              width: 48.0,
-              height: 48.0,
-              child: new Icon(
-                FontAwesomeIcons.moneyBillAlt,
-                size: 20,
-              )),
-          new Expanded(
+            new Expanded(
               child: new Stack(children: <Widget>[
             new Container(
                 height: 40.0,
@@ -51,9 +44,11 @@ class LoanItem extends StatelessWidget {
                 child: new Align(
                     alignment: Alignment.center,
                     child: new Text(
-                      '$amountLeft€ / intérêts : $interests€',
+                      '$amountLeft€ / +$interests€/sem.',
                       style: new TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.white),
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold, 
+                        color: Colors.white),
                     )))
           ])),
           new Container(
