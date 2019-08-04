@@ -3,6 +3,7 @@ import 'package:sosfaim/modules/module.dart';
 import 'loan.dart';
 
 const initialValue = 10000;
+const initialLoanId = 1;
 
 class AppState {
   final bool isLoading;
@@ -29,6 +30,7 @@ class AppState {
 
   // Loan Manager
   final List<Loan> loans;
+  final int lastLoanId;
 
   AppState(
       {this.isLoading = false,
@@ -41,8 +43,14 @@ class AppState {
       this.selectedCowNumber = 0,
       this.canMilkCows = true,
       this.loans = const [
-        Loan(leftLoan: initialValue, refundWeeksLeft: 60, weeklyInterests: 10)
+        Loan(
+            leftLoan: initialValue,
+            refundWeeksLeft: 60,
+            weeklyInterests: 10,
+            initialWeeksCount: 60,
+            id: initialLoanId)
       ],
+      this.lastLoanId = initialLoanId,
       this.milkLitters = 0,
       this.canSellMilk = true,
       this.selectedLitterPrice = 1,
@@ -63,7 +71,6 @@ class AppState {
       bool canSellMilk,
       double selectedLitterPrice,
       int abrasion}) {
-        
     return AppState(
         isLoading: isLoading ?? this.isLoading,
         modules: modules ?? this.modules,

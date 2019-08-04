@@ -15,7 +15,7 @@ class LoanManager extends StatelessWidget {
           return LoanManagerViewModel.from(store);
         },
         builder: (context, vm) {
-          return LoanManagerView(loans: vm.loans);
+          return LoanManagerView(loans: vm.loans, capital: vm.capital, refundLoan: vm.refundLoan);
         });
   }
 }

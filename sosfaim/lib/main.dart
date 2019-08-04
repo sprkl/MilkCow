@@ -8,6 +8,7 @@ import 'models/app_state.dart';
 import 'reducers/cow_module_reducer.dart';
 import 'reducers/app_state_reducer.dart';
 import 'reducers/abrasion_module_reducer.dart';
+import 'reducers/loan_manager_reducer.dart';
 
 void main() {
   runApp(new SampleApp());
@@ -15,7 +16,13 @@ void main() {
 
 class SampleApp extends StatelessWidget {
   final store = Store<AppState>(
-      combineReducers<AppState>([appReducer, cowModuleReducer, abrasionModuleReducer, mainpageModuleReducer]),
+      combineReducers<AppState>([
+        appReducer,
+        cowModuleReducer,
+        abrasionModuleReducer,
+        mainpageModuleReducer,
+        loanManagerReducer
+      ]),
       initialState: new AppState());
 
   @override
@@ -39,14 +46,13 @@ class SampleAppPage extends StatefulWidget {
 }
 
 class _SampleAppPageState extends State<SampleAppPage> {
-
   @override
   void initState() {
     super.initState();
   }
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return new MainPageManager();
   }
 }
