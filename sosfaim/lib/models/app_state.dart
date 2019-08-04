@@ -46,7 +46,7 @@ class AppState {
         Loan(
             leftLoan: initialValue,
             refundWeeksLeft: 60,
-            weeklyInterests: 10,
+            weeklyInterests: 2,
             initialWeeksCount: 60,
             id: initialLoanId)
       ],

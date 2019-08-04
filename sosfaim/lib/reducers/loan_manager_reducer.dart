@@ -29,5 +29,7 @@ AppState _refundLoan(AppState state, RefundLoan action) {
   var loans = state.loans.map((l) => l).toList();
   loans.removeWhere((l) => l.id == action.loan.id);
   return state.copyWith(
-      loans: loans, capital: state.capital - action.loan.leftLoan);
+      loans: loans,
+      energyCount: state.energyCount - 1,
+      capital: state.capital - action.loan.leftLoan);
 }
