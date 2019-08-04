@@ -16,7 +16,7 @@ class MilkSellManagerViewModel{
 
   factory MilkSellManagerViewModel.from(Store<AppState> store){
 
-    final sellMilk = () => store.dispatch(SellMilk());
+    final sellMilk = (BuildContext context) => store.dispatch(SellMilk(context));
     final onSelectedLitterPriceChanged = (selectedLitterPrice) => store.dispatch(UpdateSelectedLitterPrice(selectedLitterPrice));
 
     return MilkSellManagerViewModel(
@@ -38,6 +38,6 @@ class MilkSellManagerViewModel{
     @required this.sellMilk,
     @required this.onSelectedLitterPriceChanged,
     @required this.sellingFactor,
-    @required this.milkPrice
+    @required this.milkPrice,
   });
 }

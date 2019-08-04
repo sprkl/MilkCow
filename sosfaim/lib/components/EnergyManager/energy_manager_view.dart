@@ -28,7 +28,7 @@ class EnergyManagerView extends StatelessWidget {
             alignment: Alignment.centerLeft,
             padding: const EdgeInsets.only(top: 10.0),
             child: new Text(
-              'Vous possédez un nombre limité d\'énergie par jour. Vous pouvez les utiliser pour effectuer certaines actions.',
+              'Vous possédez une quantité limitée d\'énergie par jour. Vous pouvez l\'utiliser pour effectuer certaines actions.',
               style: new TextStyle(
                 fontStyle: FontStyle.italic,
                 fontSize: 12

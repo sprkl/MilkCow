@@ -49,7 +49,8 @@ class MilkSellManagerView extends StatelessWidget {
               ),
               new Text("Prix du marché : $milkPrice€"),
               new Text("Votre prix : $selectedLitterPriceDisplay€"),
-              new Text("Facteur de vente : maximum $sellingFactorDisplay% du stock"),
+              new Text(
+                  "Facteur de vente : maximum $sellingFactorDisplay% du stock"),
               new Container(
                   height: 40.0,
                   padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
@@ -97,7 +98,7 @@ class MilkSellManagerView extends StatelessWidget {
                           ),
                         ],
                       ),
-                      onPressed: energyCount >= 2 ? sellMilk : null)),
+                      onPressed: energyCount >= 2 ? () => sellMilk(context) : null)),
               new Visibility(
                   visible: !canSellMilk,
                   child: new Padding(

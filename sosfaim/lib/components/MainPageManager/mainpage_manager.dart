@@ -16,7 +16,7 @@ class MainPageManager extends StatelessWidget{
       },
       builder: (context, vm) {
         return MainPageManagerView(
-          dayCount: vm.dayCount
+          dayCount: vm.dayCount,
         );
       });
   }
