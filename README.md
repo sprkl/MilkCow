@@ -6,7 +6,7 @@ We choose to use Flutter as an experiment to compare with our core expertise: Xa
 
 The project was showcased on August 4th during the HITW Innovation Fair.
 
-![./readme/stand.jpg](Stand)
+![Our stand at HITW2019](/readme/stand.jpg)
 
 ## Resources
 
