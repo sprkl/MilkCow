@@ -1,8 +1,14 @@
-# sosfaim
+# MILK Producer Simulator
 
-A new Flutter project.
+A project for [SOSFaim.ong](https://www.sosfaim.ong) developped during [#HITW2019](https://www.hackinthewoods.be).
 
-## Getting Started
+We choose to use Flutter as an experiment to compare with our core expertise: Xamarin.
+
+The project was showcased on August 4th during the HITW Innovation Fair.
+
+![./readme/stand.jpg](Stand)
+
+## Resources
 
 This project is a starting point for a Flutter application.
 
