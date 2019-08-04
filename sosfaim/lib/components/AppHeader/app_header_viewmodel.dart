@@ -12,7 +12,7 @@ class AppHeaderViewModel {
   factory AppHeaderViewModel.from(Store<AppState> store) {
 
     final onClick = () => store.dispatch(AddCapital(5));
-    final onDayCountValueChanged = () => store.dispatch(IncrementDay());
+    final onDayCountValueChanged = (context) => store.dispatch(IncrementDay(context));
 
     return AppHeaderViewModel(
       capital: store.state.capital,

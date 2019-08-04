@@ -6,6 +6,7 @@ import 'package:sosfaim/actions/abrasion_module_actions.dart';
 import 'package:sosfaim/actions/actions.dart';
 import 'package:sosfaim/actions/cow_manager_actions.dart';
 import 'package:sosfaim/actions/sell_milk_manager_actions.dart';
+import 'package:sosfaim/components/EndGamePage/end_game_page.dart';
 import 'package:sosfaim/models/app_state.dart';
 
 // We create the State reducer by combining many smaller reducers into one!
@@ -26,8 +27,16 @@ AppState appReducer(AppState state, action) {
 }
 
 AppState _incrementDay(AppState state, IncrementDay action) {
+  var day = state.dayCount + 1;
+
+  if (day >= 15 && action.context != null) {
+    Navigator.push(
+        action.context, 
+        MaterialPageRoute(builder: (context) => EndGamePage()));
+  }
+
   return state.copyWith(
-      dayCount: state.dayCount + 1,
+      dayCount: day,
       energyCount: min(state.energyCount + 3, 5),
       previousEnergyCount: state.energyCount,
       canMilkCows: true,

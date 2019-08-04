@@ -26,6 +26,7 @@ dependencies:
   redux :
   flutter_redux :
   font_awesome_flutter :
+  video_player:
 
 dev_dependencies:
   flutter_test:
