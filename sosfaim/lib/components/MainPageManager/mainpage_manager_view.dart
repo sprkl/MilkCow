@@ -8,11 +8,9 @@ import '../MilkSellManager/milk_sell_manager.dart';
 class MainPageManagerView extends StatelessWidget{
 
   final int dayCount;
-  final Function onDayCountValueChanged;
 
   MainPageManagerView({
-    @required this.dayCount,
-    @required this.onDayCountValueChanged
+    @required this.dayCount
   });
 
   @override 
@@ -24,30 +22,22 @@ class MainPageManagerView extends StatelessWidget{
       body: new Column(mainAxisAlignment: MainAxisAlignment.start, children: [
         new AppHeader(),
         new Expanded(
-          child :new SingleChildScrollView(
+          child: new SingleChildScrollView(
             child: new Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 new LoanManager(),
-                new Divider(color: Theme.of(context).primaryColor,),
+                new Divider(height: 1, color: Theme.of(context).primaryColor,),
                 new CowManager(),
-                new Divider(color: Theme.of(context).primaryColor,),
+                new Divider(height: 1, color: Theme.of(context).primaryColor,),
                 new MilkSellManager(),
-                new Divider(color: Theme.of(context).primaryColor,),
+                new Divider(height: 1, color: Theme.of(context).primaryColor,),
                 new AbrasionModule(),
-                new Divider(color: Theme.of(context).primaryColor,),
+                new Divider(height: 1, color: Theme.of(context).primaryColor,),
               ],
             ),
           )
-        ),
-        new Container(
-          height: 50,
-          child: new FlatButton(
-              color: Colors.teal,
-              child: new Text("Passer au jour suivant"),
-              onPressed: () => onDayCountValueChanged(),
-            )
         )
       ])
     );

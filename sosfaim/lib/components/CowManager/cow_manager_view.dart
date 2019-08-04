@@ -37,11 +37,11 @@ class CowManagerView extends StatelessWidget {
     double maxBuyableCowCount = getClampedMaxBuyableCount();
     
     return new Container(
+      padding: const EdgeInsets.all(20.0),
       child: new Column(
         children: <Widget> [
           new Container(
             alignment: Alignment.centerLeft,
-            padding: const EdgeInsets.only(left: 10.0, top: 10.0, right: 10.0),
             child: new Text(
               'Bétail',
               style: new TextStyle(
@@ -52,7 +52,7 @@ class CowManagerView extends StatelessWidget {
           ),
           new Container(
             alignment: Alignment.centerLeft,
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.only(top: 10.0),
             child: new Text(
               'Les vaches produisent du lait. Vous pouvez les traire chaque jour pour augmenter votre stock de lait.',
               style: new TextStyle(
@@ -63,7 +63,7 @@ class CowManagerView extends StatelessWidget {
           ),
           new Container(
             height: 40.0,
-            padding: const EdgeInsets.only(top: 10.0, right: 10.0, bottom: 10.0),
+            padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
             child: new Row(
               children: <Widget> [
                 new Image.asset(
@@ -113,7 +113,7 @@ class CowManagerView extends StatelessWidget {
            new Visibility(
             visible: !canMilkCows,
             child: new Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.only(top: 10.0),
               child: new Text(
               'Vous avez déjà trait votre bétail aujourd\'hui !'
               )
@@ -121,7 +121,7 @@ class CowManagerView extends StatelessWidget {
           ),
           new Container(
             height: 40.0,
-            padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+            padding: const EdgeInsets.only(top: 10.0),
             child: new Row(
               children: <Widget> [
                 new Text("Achat / vente :"),

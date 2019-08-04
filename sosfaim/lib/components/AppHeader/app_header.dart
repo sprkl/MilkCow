@@ -16,8 +16,10 @@ class AppHeader extends StatelessWidget {
         },
         builder: (context, vm) {
           return AppHeaderView(
-              capital: vm.capital,
-              onClick: vm.onClick);
+            capital: vm.capital,
+            onClick: vm.onClick,
+            onDayCountValueChanged: vm.onDayCountValueChanged
+          );
         });
   }
 }

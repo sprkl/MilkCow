@@ -51,6 +51,8 @@ flutter:
     - assets/images/cow_icon.png
     - assets/images/gears_icon.png
     - assets/images/milk_bottle_icon.png
+    - assets/images/energy_icon.png
+
     
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

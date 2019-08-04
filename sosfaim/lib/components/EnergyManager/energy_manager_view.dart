@@ -1,30 +1,23 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class AbrasionModuleView extends StatelessWidget {
-  final int abrasion;
-  final Function repairMaterial;
+class EnergyManagerView extends StatelessWidget {
+  
+  final int energyCount;
 
-  AbrasionModuleView({
-    @required this.abrasion, 
-    @required this.repairMaterial});
+  EnergyManagerView({
+    @required this.energyCount});
 
   @override
   Widget build(BuildContext context) {
-
-    var color = getAbrasionColor();
-    var canShowRepairButton = abrasion > 0;
-    var repairCost = abrasion * 30;
-    var repairButtonText = 'Réparer: -$repairCost €';
-
     return new Container(
-      padding: const EdgeInsets.only(left: 20.0, top: 10.0, right: 20.0, bottom: 10.0),
+      padding: const EdgeInsets.only(left: 20.0, top: 20.0, right: 20.0),
       child: new Column(
         children: <Widget> [
           new Container(
             alignment: Alignment.centerLeft,
             child: new Text(
-              'Usure du matériel',
+              'Énergie',
               style: new TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 18
@@ -35,7 +28,7 @@ class AbrasionModuleView extends StatelessWidget {
             alignment: Alignment.centerLeft,
             padding: const EdgeInsets.only(top: 10.0),
             child: new Text(
-              'L\'état du matériel influence votre production de lait. Plus votre matériel est usé, moins vous aurez du lait de votre bétail.',
+              'Vous possédez un nombre limité d\'énergie par jour. Vous pouvez les utiliser pour effectuer certaines actions.',
               style: new TextStyle(
                 fontStyle: FontStyle.italic,
                 fontSize: 12
@@ -44,11 +37,11 @@ class AbrasionModuleView extends StatelessWidget {
           ),
           new Container(
             height: 40.0,
-            padding: const EdgeInsets.only(top: 10.0, right: 10.0, bottom: 10.0),
+            padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
             child: new Row(
               children: <Widget> [
                 new Image.asset(
-                  'assets/images/gears_icon.png',
+                  'assets/images/energy_icon.png',
                   width: 48.0,
                   height: 48.0,
                   fit: BoxFit.contain,
@@ -59,9 +52,9 @@ class AbrasionModuleView extends StatelessWidget {
                       new Container(
                         height: 40.0,
                         child: new LinearProgressIndicator(
-                          value: abrasion / 100.0,
+                          value: energyCount.toDouble(),
                           backgroundColor: Colors.grey,
-                          valueColor: AlwaysStoppedAnimation<Color>(color),
+                          valueColor: AlwaysStoppedAnimation<Color>(Colors.amber)
                         )
                       ),
                       new Container(
@@ -69,7 +62,7 @@ class AbrasionModuleView extends StatelessWidget {
                         child: new Align(
                           alignment: Alignment.center,
                           child: new Text(
-                            '$abrasion/100',
+                            '$energyCount/3',
                             style: new TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.white
@@ -82,31 +75,9 @@ class AbrasionModuleView extends StatelessWidget {
                 )
               ]
             )
-          ),
-          new Visibility(
-            visible: canShowRepairButton,
-            child: new RaisedButton(
-              elevation: 2,
-              child: Text(repairButtonText),
-              onPressed: () {
-                repairMaterial(repairCost);
-              }
-            )
           )
         ]
       )
     );
-  }
-
-  getAbrasionColor()  {
-    if (abrasion >= 66) {
-      return Colors.red;
-    }
-    else if (abrasion >= 33) {
-      return Colors.orange;
-    }
-    else {
-      return Colors.teal;
-    }
   }
 }

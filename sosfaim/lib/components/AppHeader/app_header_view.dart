@@ -4,28 +4,34 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:sosfaim/components/EnergyManager/energy_manager.dart';
 
 class AppHeaderView extends StatelessWidget {
   final int capital;
   final Function onClick;
+  final Function onDayCountValueChanged;
 
-  AppHeaderView(
-      {@required this.capital,
-      @required this.onClick});
+  AppHeaderView({ 
+    @required this.capital,
+    @required this.onClick,
+    @required this.onDayCountValueChanged
+  });
 
   @override
   Widget build(BuildContext context) {
     return new Container(
-      padding: EdgeInsets.all(10),
+      padding: EdgeInsets.only(bottom: 10.0),
       color: Theme.of(context).backgroundColor.withAlpha(150),
-      child:
-        new Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          new Column(children: <Widget>[
-            new Icon(Icons.euro_symbol),
-            new Text(this.capital.toString())
-          ]
-        )
-      ]),
+      child: new Column(
+        children: <Widget>[
+          new EnergyManager(),
+          new RaisedButton(
+              elevation: 2,
+              child: new Text("Passer au jour suivant"),
+              onPressed: onDayCountValueChanged,
+            )
+        ],
+      )
     );
   }
 }

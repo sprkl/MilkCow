@@ -26,7 +26,11 @@ AppState appReducer(AppState state, action) {
 AppState _incrementDay(AppState state, IncrementDay action){
 
   return state.copyWith(
-    dayCount : state.dayCount + 1
+    dayCount : state.dayCount + 1,
+    energyCount: 3,
+    canMilkCows: true,
+    canSellMilk: true,
+    abrasion: state.abrasion
   );
 }
 
@@ -45,14 +49,16 @@ AppState _addCapital(AppState state, AddCapital action){
 AppState _repairMaterial(AppState state, RepairMaterial action) {
   return state.copyWith(
     capital: state.capital - action.repairCost,
-    abrasion: 0);
+    abrasion: 0,
+    energyCount: state.energyCount - 2);
 }
 
 AppState _buyCow(AppState state, BuyCow action) {
   return state.copyWith(
     totalCowNumber: state.totalCowNumber + action.cowCount,
     capital: state.capital + action.totalCost, // action.totalCost is negative
-    selectedCowNumber: 0
+    selectedCowNumber: 0,
+    energyCount: state.energyCount - 1
   );
 }
 
@@ -69,7 +75,8 @@ AppState _milkCows(AppState state, MilkCows action) {
 
   return state.copyWith(
     milkLitters: milkLitters.toInt(),
-    canMilkCows: false
+    canMilkCows: false,
+    energyCount: state.energyCount - 1
   );
 }
 
@@ -87,6 +94,7 @@ AppState _sellMilk(AppState state, SellMilk action) {
   return state.copyWith(
     capital: capital.toInt(),
     milkLitters: state.milkLitters - soldMilkLitters,
-    canSellMilk: false
+    canSellMilk: false,
+    energyCount: state.energyCount - 1
   );
 }

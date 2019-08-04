@@ -21,11 +21,11 @@ class MilkSellManagerView extends StatelessWidget{
   @override 
   Widget build(BuildContext context){
     return new Container(
+      padding: const EdgeInsets.all(20.0),
       child: new Column(
         children: <Widget> [
           new Container(
             alignment: Alignment.centerLeft,
-            padding: const EdgeInsets.only(left: 10.0, right: 10.0),
             child: new Text(
               'Stock de lait',
               style: new TextStyle(
@@ -36,7 +36,7 @@ class MilkSellManagerView extends StatelessWidget{
           ),
           new Container(
             alignment: Alignment.centerLeft,
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.only(top: 10.0),
             child: new Text(
               'Votre lait peut être vendu à la population locale. Vous pouvez décider du prix de vente. Faites attention au prix imposé par la concurrence !',
               style: new TextStyle(
@@ -47,7 +47,7 @@ class MilkSellManagerView extends StatelessWidget{
           ),
           new Container(
             height: 40.0,
-            padding: const EdgeInsets.only(top: 10.0, right: 10.0, bottom: 10.0),
+            padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
             child: new Row(
               children: <Widget> [
                 new Image.asset(
