@@ -20,7 +20,7 @@ class MilkSellManager extends StatelessWidget{
           milkLitters: vm.milkLitters,
           selectedLitterPrice: vm.selectedLitterPrice,
           sellMilk: vm.sellMilk,
-          onSelectedLitterPriceChanged: vm.onSelectedLitterPriceChanged,
+          onSelectedLitterPriceChanged: vm.onSelectedLitterPriceChanged
         );
       });
   }

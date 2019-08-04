@@ -7,6 +7,9 @@ class AppState {
   final int capital;
   final double milkPrice;
 
+  // Energy Manager
+  final int energyCount;
+
   // Cow Manager Module
   final int totalCowNumber;
   final double selectedCowNumber;
@@ -26,6 +29,7 @@ class AppState {
       this.dayCount = 1,
       this.capital = 10000,
       this.milkPrice = 1,
+      this.energyCount = 3,
       this.totalCowNumber = 10,
       this.selectedCowNumber = 0,
       this.canMilkCows = true,
@@ -40,7 +44,7 @@ class AppState {
       int dayCount,
       int capital,
       double milkPrice,
-      int milkProduction,
+      int energyCount,
       int totalCowNumber,
       double selectedCowNumber,
       bool canMilkCows,
@@ -55,6 +59,7 @@ class AppState {
         dayCount: dayCount ?? this.dayCount,
         capital: capital ?? this.capital,
         milkPrice: milkPrice ?? this.milkPrice,
+        energyCount: energyCount ?? this.energyCount,
         totalCowNumber: totalCowNumber ?? this.totalCowNumber,
         selectedCowNumber: selectedCowNumber ?? this.selectedCowNumber,
         canMilkCows: canMilkCows ?? this.canMilkCows,
