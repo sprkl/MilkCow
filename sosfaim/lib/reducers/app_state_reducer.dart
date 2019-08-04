@@ -81,7 +81,7 @@ AppState _milkCows(AppState state, MilkCows action) {
 
 AppState _updateSelectedLitterPrice(AppState state, UpdateSelectedLitterPrice action) {
   return state.copyWith(
-    selectedLitterPrice: action.selectedLitterPrice
+    selectedLitterPrice: (action.selectedLitterPrice * 100.0).toInt() / 100.0
   );
 }
 

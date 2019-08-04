@@ -22,6 +22,9 @@ class MilkSellManagerView extends StatelessWidget{
 
   @override 
   Widget build(BuildContext context){
+
+    var roundedLitterPrice = (selectedLitterPrice * 100.0).toInt() / 100.0;
+
     return new Container(
       padding: const EdgeInsets.all(20.0),
       child: new Column(
@@ -125,10 +128,50 @@ class MilkSellManagerView extends StatelessWidget{
                   new Expanded(
                     child: new Slider(
                       min: 0.01,
-                      divisions: 500,
                       max: 5,
                       value: selectedLitterPrice,
                       onChanged: onSelectedLitterPriceChanged
+                  )
+                )
+              ]
+            )
+          ),
+          new Container(
+            height: 40.0,
+            padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+            child: new Row(
+              children: <Widget> [
+                new Image.asset(
+                  'assets/images/milk_bottle_icon.png',
+                  width: 48.0,
+                  height: 48.0,
+                  fit: BoxFit.contain,
+                ),
+                new Expanded(
+                  child: new Stack(
+                    children: <Widget> [
+                      new Container(
+                        height: 40.0,
+                        child: new LinearProgressIndicator(
+                          value: roundedLitterPrice * 0.2,
+                          backgroundColor: Colors.grey,
+                          valueColor: AlwaysStoppedAnimation<Color>(Colors.teal)
+                        )
+                      ),
+                      new Container(
+                        height: 40.0,
+                        child: new Align(
+                          alignment: Alignment.center,
+                          child: new Text(
+                            '$roundedLitterPrice € / L',
+                            style: new TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white
+                            ),
+                          )
+                        )
+                      )
+                    ]
                   )
                 )
               ]
