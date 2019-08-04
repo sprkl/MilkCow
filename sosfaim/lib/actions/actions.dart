@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class AddCapital {
   final int amount;
 
@@ -16,4 +18,8 @@ class UpdateMilkProduction {
   UpdateMilkProduction(this.production);
 }
 
-class IncrementDay {}
+class IncrementDay {
+   final BuildContext context;
+
+  IncrementDay(this.context);
+}

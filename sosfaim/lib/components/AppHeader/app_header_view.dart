@@ -31,7 +31,7 @@ class AppHeaderView extends StatelessWidget {
             child: new RaisedButton(
               elevation: 2,
               child: new Text("Passer au jour suivant"),
-              onPressed: onDayCountValueChanged,
+              onPressed: () => onDayCountValueChanged(context),
             )
           )
         ],

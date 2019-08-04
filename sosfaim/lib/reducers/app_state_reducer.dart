@@ -25,12 +25,40 @@ AppState appReducer(AppState state, action) {
 }
 
 AppState _incrementDay(AppState state, IncrementDay action) {
+
+  var newMilkPrice = 0.0;
+  if(state.dayCount == 4) {
+    newMilkPrice = 0.60;
+
+    final snackBar = SnackBar(
+      backgroundColor: Theme.of(action.context).colorScheme.primary,
+      content: Text(
+        'La surproduction de lait en Europe entraîne une chute importante du prix de vente.'),
+      duration: new Duration(seconds: 4),
+    );
+    Scaffold.of(action.context).showSnackBar(snackBar);
+  }
+  else if(state.dayCount == 9) {
+    newMilkPrice = 0.20;
+
+    final snackBar = SnackBar(
+      backgroundColor: Theme.of(action.context).colorScheme.primary,
+      content: Text(
+          'Suite au vote d\'une loi européene, le prix du lait est fixé à 0.20 €/L.'),
+      duration: new Duration(seconds: 4),
+    );
+    Scaffold.of(action.context).showSnackBar(snackBar);
+  }
+
+  var milkPrice = newMilkPrice > 0 ? newMilkPrice : state.milkPrice;
+
   return state.copyWith(
       dayCount: state.dayCount + 1,
       energyCount: min(state.energyCount + 3, 5),
       previousEnergyCount: state.energyCount,
       canMilkCows: true,
       canSellMilk: true,
+      milkPrice: milkPrice,
       abrasion: state.abrasion);
 }
 
@@ -79,7 +107,7 @@ AppState _milkCows(AppState state, MilkCows action) {
     final snackBar = SnackBar(
       backgroundColor: Theme.of(action.context).colorScheme.primary,
       content: Text(
-          'Votre stock de lait est plein. Penser à le vendre !'),
+          'Votre stock de lait est plein. Pensez à le vendre !'),
       duration: new Duration(seconds: 4),
     );
     Scaffold.of(action.context).showSnackBar(snackBar);
