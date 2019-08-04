@@ -11,13 +11,23 @@ AppState loanManagerReducer(AppState state, action) {
 }
 
 AppState _incrementDay(AppState state, IncrementDay action) {
-  return state.copyWith(
-    canSellMilk: true,
-  );
+  bool shouldPayInterest = state.dayCount % 7 == 0;
+
+  int totalInterests = 0;
+  if (shouldPayInterest) {
+    totalInterests = state.loans
+        .map((l) => l.leftLoan / 100.0 * l.weeklyInterests)
+        .toList()
+        .reduce(((v, l) => v + l))
+        .toInt();
+  }
+
+  return state.copyWith(capital: state.capital - totalInterests);
 }
 
 AppState _refundLoan(AppState state, RefundLoan action) {
   var loans = state.loans.map((l) => l).toList();
   loans.removeWhere((l) => l.id == action.loan.id);
-  return state.copyWith(loans: loans, capital: state.capital - action.loan.leftLoan);
+  return state.copyWith(
+      loans: loans, capital: state.capital - action.loan.leftLoan);
 }
