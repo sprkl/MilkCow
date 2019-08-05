@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
 
 class AnimatedProgressIndicator extends StatefulWidget {
   final double from;
@@ -42,12 +41,14 @@ class _ProgressIndicatorDemoState extends State<AnimatedProgressIndicator>
 
   @override
   void didUpdateWidget(Widget oldWidget) {
-    updateAnimation();
+    if ((oldWidget as AnimatedProgressIndicator).from != this.widget.from) {
+      updateAnimation();
+    }
     super.didUpdateWidget(oldWidget);
   }
 
   void initAnimation() {
-   tween = Tween(begin: from, end: to);
+    tween = Tween(begin: from, end: to);
 
     controller = AnimationController(
         duration: const Duration(milliseconds: 500), vsync: this);
@@ -60,7 +61,7 @@ class _ProgressIndicatorDemoState extends State<AnimatedProgressIndicator>
     controller.forward();
   }
 
-  void updateAnimation(){
+  void updateAnimation() {
     tween.begin = widget.from;
     tween.end = widget.to;
     controller.reset();

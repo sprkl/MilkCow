@@ -46,7 +46,7 @@ class LoanManagerView extends StatelessWidget {
                       size: 20,
                     )),
                 new Text(
-                  "Capital : " + this.capital.toString() + "€",
+                  "fdsfds : " + this.capital.toString() + "€",
                   style: new TextStyle(fontWeight: FontWeight.bold),
                 )
               ]),

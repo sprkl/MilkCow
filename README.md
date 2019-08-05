@@ -1,12 +1,16 @@
 # MILK Producer Simulator
 
-A project for [SOSFaim.ong](https://www.sosfaim.ong) developped during [#HITW2019](https://www.hackinthewoods.be).
+A project for the NGO [SOSFaim](https://www.sosfaim.be) developped during [#HITW2019](https://www.hackinthewoods.be).
 
 We choose to use Flutter as an experiment to compare with our core expertise: Xamarin.
 
 The project was showcased on August 4th during the HITW Innovation Fair.
 
 ![Our stand at HITW2019](/readme/stand.jpg)
+
+## Screen capture
+
+![Screen capture](/readme/screen.jpg)
 
 ## Resources
 
